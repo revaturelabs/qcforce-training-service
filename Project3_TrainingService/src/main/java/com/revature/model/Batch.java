@@ -2,12 +2,11 @@ package com.revature.model;
 
 import java.io.Serializable;
 import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,41 +18,47 @@ public class Batch implements Serializable{
 
 	@Id
 	@Column(name="batch_name")
-	private String batchName; //primary key
+	private String batchName; //PK
 	
-	@Column(name="trainer")
-	private String batchTrainer;
+	@Column(name="batch_id") 
+	private int batchId;
+	
+	@Column(name="batch_start_date")
+	private Date batchStartDate;
+	
+	@Column(name="batch_end_date")
+	private Date batchEndDate;
+	
+	@Column(name="batch_skill")
+	private String batchSkill;
 	
 	@Column(name="batch_location")
 	private String batchLocation;
 
-	@Column(name="start_date")
-	private Date batchStartDate;
+	@Column(name="batch_type")
+	private String type;
+
+	@Column(name="batch_good_grade")
+	private boolean goodGrade;
 	
-	@Column(name="end_date")
-	private Date batchEndDate;
-
-	@Column(name="training_track")
-	private String trainingTrack;
-
-	@Column(name="extended_batch")
-	private boolean extendedBatch;
+	@Column(name="batch_passing_grade")
+	private boolean passingGrade;
+	
+	@Column(name="batch_current_week")
+	private String current_week;
 
 	public Batch() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Batch(String batchName, String batchTrainer, String batchLocation, Date batchStartDate, Date batchEndDate,
-			String trainingTrack, boolean extendedBatch) {
-		super();
-		this.batchName = batchName;
-		this.batchTrainer = batchTrainer;
-		this.batchLocation = batchLocation;
-		this.batchStartDate = batchStartDate;
-		this.batchEndDate = batchEndDate;
-		this.trainingTrack = trainingTrack;
-		this.extendedBatch = extendedBatch;
+	
+	public int getBatchId() {
+		return batchId;
+	}
+
+	public void setBatchId(int batchId) {
+		this.batchId = batchId;
 	}
 
 	public String getBatchName() {
@@ -62,22 +67,6 @@ public class Batch implements Serializable{
 
 	public void setBatchName(String batchName) {
 		this.batchName = batchName;
-	}
-
-	public String getBatchTrainer() {
-		return batchTrainer;
-	}
-
-	public void setBatchTrainer(String batchTrainer) {
-		this.batchTrainer = batchTrainer;
-	}
-
-	public String getBatchLocation() {
-		return batchLocation;
-	}
-
-	public void setLocation(String batchLocation) {
-		this.batchLocation = batchLocation;
 	}
 
 	public Date getBatchStartDate() {
@@ -96,20 +85,60 @@ public class Batch implements Serializable{
 		this.batchEndDate = batchEndDate;
 	}
 
-	public String getTrainingTrack() {
-		return trainingTrack;
+	public String getBatchSkill() {
+		return batchSkill;
 	}
 
-	public void setTrainingTrack(String trainingTrack) {
-		this.trainingTrack = trainingTrack;
+	public void setSkill(String skill) {
+		this.batchSkill = skill;
 	}
 
-	public boolean isExtendedBatch() {
-		return extendedBatch;
+	public String getBatchLocation() {
+		return batchLocation;
 	}
 
-	public void setExtendedBatch(boolean extendedBatch) {
-		this.extendedBatch = extendedBatch;
+	public void setBatchLocation(String batchLocation) {
+		this.batchLocation = batchLocation;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public boolean isGoodGrade() {
+		return goodGrade;
+	}
+
+	public void setGoodGrade(boolean goodGrade) {
+		this.goodGrade = goodGrade;
+	}
+
+	public boolean isPassingGrade() {
+		return passingGrade;
+	}
+
+	public void setPassingGrade(boolean passingGrade) {
+		this.passingGrade = passingGrade;
+	}
+
+	public String isCurrent_week() {
+		return current_week;
+	}
+
+	public void setCurrent_week(String current_week) {
+		this.current_week = current_week;
+	}
+
+	@Override
+	public String toString() {
+		return "Batch [batchId=" + batchId + ", batchName=" + batchName + ", batchStartDate="
+				+ batchStartDate + ", batchEndDate=" + batchEndDate + ", skill=" + batchSkill + ", batchLocation="
+				+ batchLocation + ", type=" + type + ", goodGrade=" + goodGrade + ", passingGrade=" + passingGrade
+				+ ", current_week=" + current_week + "]";
 	}
 
 }

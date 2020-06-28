@@ -1,10 +1,12 @@
 package com.revature.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -20,25 +22,36 @@ public class Associate implements Serializable{
 	@Column(name="associate_id")
 	private int associateId; //primary key
 	
-	@Column(name="associate_name")
-	private String associateName;
+	@Column(name="training_status")
+	private String trainingStatus;
 	
-	@Column(name="associate_email")
-	private String associateEmail;
+	@Column(name="flag")
+	private int flag; //????
+	
+	@Column(name="salesforce_id")
+	private String salesforceId;
+	
+	@Column(name="associate_first_name")
+	private String associateFirstName;
+	
+	@Column(name="associate_last_name")
+	private String associateLastName;
+	
+	@Column(name="active")
+	private boolean active;
 
-	//private String batchName;
+	@Column(name="associate_start_date")
+	private Date associateStartDate;
+	
+	@Column(name="associate_end_date")
+	private Date associateEndDate;
+
+	@OneToOne
+	private Date batchID; //FK (figure out which batch id from batch table will be the foreign key)
 	
 	public Associate() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public Associate(int associateId, String associateName, String associateEmail) {
-		super();
-		this.associateId = associateId;
-		this.associateName = associateName;
-		this.associateEmail = associateEmail;
-		
 	}
 
 	public int getAssociateId() {
@@ -49,25 +62,76 @@ public class Associate implements Serializable{
 		this.associateId = associateId;
 	}
 
-	public String getAssociateName() {
-		return associateName;
+	public String getTrainingStatus() {
+		return trainingStatus;
 	}
 
-	public void setAssociateName(String associateName) {
-		this.associateName = associateName;
+	public void setTrainingStatus(String trainingStatus) {
+		this.trainingStatus = trainingStatus;
 	}
 
-	public String getAssociateEmail() {
-		return associateEmail;
+	public int getFlag() {
+		return flag;
 	}
 
-	public void setAssociateEmail(String associateEmail) {
-		this.associateEmail = associateEmail;
+	public void setFlag(int flag) {
+		this.flag = flag;
 	}
-	
-	
-	
-	
-	
+
+	public String getSalesforceId() {
+		return salesforceId;
+	}
+
+	public void setSalesforceId(String salesforceId) {
+		this.salesforceId = salesforceId;
+	}
+
+	public String getAssociateFirstName() {
+		return associateFirstName;
+	}
+
+	public void setAssociateFirstName(String associateFirstName) {
+		this.associateFirstName = associateFirstName;
+	}
+
+	public String getAssociateLastName() {
+		return associateLastName;
+	}
+
+	public void setAssociateLastName(String associateLastName) {
+		this.associateLastName = associateLastName;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public Date getAssociateStartDate() {
+		return associateStartDate;
+	}
+
+	public void setAssociateStartDate(Date associateStartDate) {
+		this.associateStartDate = associateStartDate;
+	}
+
+	public Date getAssociateEndDate() {
+		return associateEndDate;
+	}
+
+	public void setAssociateEndDate(Date associateEndDate) {
+		this.associateEndDate = associateEndDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Associate [associateId=" + associateId + ", trainingStatus=" + trainingStatus + ", flag=" + flag
+				+ ", salesforceId=" + salesforceId + ", associateFirstName=" + associateFirstName
+				+ ", associateLastName=" + associateLastName + ", active=" + active + ", associateStartDate="
+				+ associateStartDate + ", associateEndDate=" + associateEndDate + ", batchID=" + batchID + "]";
+	}
 	
 }
