@@ -47,7 +47,7 @@ public class Associate implements Serializable{
 	private Date associateEndDate;
 
 	@OneToOne
-	private Date batchID; //FK (figure out which batch id from batch table will be the foreign key)
+	private String batchName; //FK (figure out which batch id from batch table will be the foreign key)
 	
 	public Associate() {
 		super();
@@ -131,7 +131,7 @@ public class Associate implements Serializable{
 		return "Associate [associateId=" + associateId + ", trainingStatus=" + trainingStatus + ", flag=" + flag
 				+ ", salesforceId=" + salesforceId + ", associateFirstName=" + associateFirstName
 				+ ", associateLastName=" + associateLastName + ", active=" + active + ", associateStartDate="
-				+ associateStartDate + ", associateEndDate=" + associateEndDate + ", batchID=" + batchID + "]";
+				+ associateStartDate + ", associateEndDate=" + associateEndDate + ", batchName=" + batchName + "]";
 	}
 	
 }
