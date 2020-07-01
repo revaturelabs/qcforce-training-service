@@ -45,7 +45,7 @@ public class Batch implements Serializable{
 	private boolean passingGrade;
 	
 	@Column(name="batch_current_week")
-	private String current_week;
+	private String currentWeek;
 
 	public Batch() {
 		super();
@@ -126,11 +126,11 @@ public class Batch implements Serializable{
 	}
 
 	public String isCurrent_week() {
-		return current_week;
+		return currentWeek;
 	}
 
 	public void setCurrent_week(String current_week) {
-		this.current_week = current_week;
+		this.currentWeek = current_week;
 	}
 
 	@Override
@@ -138,7 +138,7 @@ public class Batch implements Serializable{
 		return "Batch [batchId=" + batchId + ", batchName=" + batchName + ", batchStartDate="
 				+ batchStartDate + ", batchEndDate=" + batchEndDate + ", skill=" + batchSkill + ", batchLocation="
 				+ batchLocation + ", type=" + type + ", goodGrade=" + goodGrade + ", passingGrade=" + passingGrade
-				+ ", current_week=" + current_week + "]";
+				+ ", current_week=" + currentWeek + "]";
 	}
 
 }

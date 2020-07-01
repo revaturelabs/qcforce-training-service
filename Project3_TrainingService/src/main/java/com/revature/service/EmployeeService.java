@@ -5,9 +5,9 @@ import java.util.List;
 import com.revature.model.Employee;
 
 public interface EmployeeService {
-	public List<Employee> getAllBatches();
+	public List<Employee> getAllEmployes();
 
-	public Employee getEmployeeByEmployeeId(String employeeId);
+	public Employee getEmployeeByEmployeeId(int employeeId);
 	
 	public Employee getEmployeeByFullName(String firstName, String lastName);
 	

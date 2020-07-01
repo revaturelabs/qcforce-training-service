@@ -29,7 +29,14 @@ public class Employee implements Serializable {
 	@Column(name="employee_last_name")
 	private String lastname;
 	
-		
+	public int getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
+
 	public String getEmail() {
 		return email;
 	}
