@@ -6,7 +6,7 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -19,39 +19,41 @@ public class Associate implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="associate_id")
-	private int associateId; //primary key
+	@Column(name="id")
+	private int associateId;
 	
 	@Column(name="training_status")
 	private String trainingStatus;
 	
-	@Column(name="flag")
-	private int flag; //????
-	
+	@Column(name="email")
+	private String email;
+
 	@Column(name="salesforce_id")
 	private String salesforceId;
 	
-	@Column(name="associate_first_name")
-	private String associateFirstName;
+	@Column(name="first_name")
+	private String firstName;
 	
-	@Column(name="associate_last_name")
-	private String associateLastName;
+	@Column(name="last_name")
+	private String lastName;
 	
+	@Column(name="flag")
+	private String flag;
+
+	@Column(name="start_date")
+	private Date startDate;
+	
+	@Column(name="end_date")
+	private Date endDate;
+
 	@Column(name="active")
 	private boolean active;
 
-	@Column(name="associate_start_date")
-	private Date associateStartDate;
-	
-	@Column(name="associate_end_date")
-	private Date associateEndDate;
-
-	@OneToOne
-	private String batchName; //FK (figure out which batch id from batch table will be the foreign key)
+	@ManyToOne
+	private Batch batch;
 	
 	public Associate() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getAssociateId() {
@@ -70,12 +72,12 @@ public class Associate implements Serializable{
 		this.trainingStatus = trainingStatus;
 	}
 
-	public int getFlag() {
-		return flag;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setFlag(int flag) {
-		this.flag = flag;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSalesforceId() {
@@ -86,20 +88,44 @@ public class Associate implements Serializable{
 		this.salesforceId = salesforceId;
 	}
 
-	public String getAssociateFirstName() {
-		return associateFirstName;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setAssociateFirstName(String associateFirstName) {
-		this.associateFirstName = associateFirstName;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getAssociateLastName() {
-		return associateLastName;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setAssociateLastName(String associateLastName) {
-		this.associateLastName = associateLastName;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	public boolean isActive() {
@@ -110,28 +136,20 @@ public class Associate implements Serializable{
 		this.active = active;
 	}
 
-	public Date getAssociateStartDate() {
-		return associateStartDate;
+	public Batch getBatch() {
+		return batch;
 	}
 
-	public void setAssociateStartDate(Date associateStartDate) {
-		this.associateStartDate = associateStartDate;
-	}
-
-	public Date getAssociateEndDate() {
-		return associateEndDate;
-	}
-
-	public void setAssociateEndDate(Date associateEndDate) {
-		this.associateEndDate = associateEndDate;
+	public void setBatch(Batch batch) {
+		this.batch = batch;
 	}
 
 	@Override
 	public String toString() {
-		return "Associate [associateId=" + associateId + ", trainingStatus=" + trainingStatus + ", flag=" + flag
-				+ ", salesforceId=" + salesforceId + ", associateFirstName=" + associateFirstName
-				+ ", associateLastName=" + associateLastName + ", active=" + active + ", associateStartDate="
-				+ associateStartDate + ", associateEndDate=" + associateEndDate + ", batchName=" + batchName + "]";
+		return "Associate [associateId=" + associateId + ", trainingStatus=" + trainingStatus + ", email=" + email
+				+ ", salesforceId=" + salesforceId + ", firstName=" + firstName + ", lastName=" + lastName + ", flag="
+				+ flag + ", startDate=" + startDate + ", endDate=" + endDate + ", active=" + active + ", batch="
+				+ batch + "]";
 	}
 	
 }

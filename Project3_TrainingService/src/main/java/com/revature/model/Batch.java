@@ -2,10 +2,13 @@ package com.revature.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
@@ -17,47 +20,48 @@ public class Batch implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="batch_name")
-	private String batchName; //PK
+	@Column(name="id")
+	private String batchId;
 	
-	@Column(name="batch_id") 
-	private int batchId;
+	@Column(name="batch_name") 
+	private String batchName;
 	
-	@Column(name="batch_start_date")
-	private Date batchStartDate;
+	@Column(name="start_date")
+	private Date startDate;
 	
-	@Column(name="batch_end_date")
-	private Date batchEndDate;
+	@Column(name="end_date")
+	private Date endDate;
 	
-	@Column(name="batch_skill")
-	private String batchSkill;
+	@Column(name="skill")
+	private String skill;
 	
 	@Column(name="batch_location")
 	private String batchLocation;
 
 	@Column(name="batch_type")
-	private String type;
+	private String batchType;
 
-	@Column(name="batch_good_grade")
+	@Column(name="good_grade")
 	private boolean goodGrade;
 	
-	@Column(name="batch_passing_grade")
+	@Column(name="passing_grade")
 	private boolean passingGrade;
 	
-	@Column(name="batch_current_week")
+	@Column(name="current_week")
 	private String currentWeek;
 
+	@OneToMany(mappedBy="Associate")
+	private List<Associate> associates = new ArrayList<Associate>();
+	
 	public Batch() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	
-	public int getBatchId() {
+	public String getBatchId() {
 		return batchId;
 	}
 
-	public void setBatchId(int batchId) {
+	public void setBatchId(String batchId) {
 		this.batchId = batchId;
 	}
 
@@ -69,28 +73,28 @@ public class Batch implements Serializable{
 		this.batchName = batchName;
 	}
 
-	public Date getBatchStartDate() {
-		return batchStartDate;
+	public Date getStartDate() {
+		return startDate;
 	}
 
-	public void setBatchStartDate(Date batchStartDate) {
-		this.batchStartDate = batchStartDate;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
-	public Date getBatchEndDate() {
-		return batchEndDate;
+	public Date getEndDate() {
+		return endDate;
 	}
 
-	public void setBatchEndDate(Date batchEndDate) {
-		this.batchEndDate = batchEndDate;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
-	public String getBatchSkill() {
-		return batchSkill;
+	public String getSkill() {
+		return skill;
 	}
 
 	public void setSkill(String skill) {
-		this.batchSkill = skill;
+		this.skill = skill;
 	}
 
 	public String getBatchLocation() {
@@ -101,12 +105,12 @@ public class Batch implements Serializable{
 		this.batchLocation = batchLocation;
 	}
 
-	public String getType() {
-		return type;
+	public String getBatchType() {
+		return batchType;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setBatchType(String batchType) {
+		this.batchType = batchType;
 	}
 
 	public boolean isGoodGrade() {
@@ -125,20 +129,29 @@ public class Batch implements Serializable{
 		this.passingGrade = passingGrade;
 	}
 
-	public String isCurrent_week() {
+	public String getCurrentWeek() {
 		return currentWeek;
 	}
 
-	public void setCurrent_week(String current_week) {
-		this.currentWeek = current_week;
+	public void setCurrentWeek(String currentWeek) {
+		this.currentWeek = currentWeek;
+	}
+
+	public List<Associate> getAssociates() {
+		return associates;
+	}
+
+	public void setAssociates(List<Associate> associates) {
+		this.associates = associates;
 	}
 
 	@Override
 	public String toString() {
-		return "Batch [batchId=" + batchId + ", batchName=" + batchName + ", batchStartDate="
-				+ batchStartDate + ", batchEndDate=" + batchEndDate + ", skill=" + batchSkill + ", batchLocation="
-				+ batchLocation + ", type=" + type + ", goodGrade=" + goodGrade + ", passingGrade=" + passingGrade
-				+ ", current_week=" + currentWeek + "]";
+		return "Batch [batchId=" + batchId + ", batchName=" + batchName + ", startDate=" + startDate + ", endDate="
+				+ endDate + ", skill=" + skill + ", batchLocation=" + batchLocation + ", batchType=" + batchType
+				+ ", goodGrade=" + goodGrade + ", passingGrade=" + passingGrade + ", currentWeek=" + currentWeek
+				+ ", associates=" + associates + "]";
 	}
 
+	
 }
