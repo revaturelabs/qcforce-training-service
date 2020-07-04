@@ -72,7 +72,7 @@ public class BatchController {
 	}
 	
 	@DeleteMapping("/Batch/{batchId}")
-	public String deleteBatch(@PathParam("batchId") int batchId) {
+	public String deleteBatch(@PathParam("batchId") String batchId) {
 		Batch batch = new Batch();
 		batch.setBatchId(batchId);
 		batchService.deleteBatch(batch);

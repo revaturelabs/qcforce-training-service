@@ -50,8 +50,11 @@ public class Batch implements Serializable{
 	@Column(name="current_week")
 	private String currentWeek;
 
-	@OneToMany(mappedBy="Associate")
+	@OneToMany(mappedBy="batch")
 	private List<Associate> associates = new ArrayList<Associate>();
+	
+	@OneToMany(mappedBy="batch")
+	private List<EmployeeBatch> employeeBatches = new ArrayList<EmployeeBatch>();
 	
 	public Batch() {
 		super();
@@ -144,14 +147,29 @@ public class Batch implements Serializable{
 	public void setAssociates(List<Associate> associates) {
 		this.associates = associates;
 	}
+	
+	public void addAssociate(Associate associate) {
+		this.associates.add(associate);
+	}
+	
+	public List<EmployeeBatch> getEmployeeBatches() {
+		return employeeBatches;
+	}
+
+	public void setEmployeeBatches(List<EmployeeBatch> employeeBatches) {
+		this.employeeBatches = employeeBatches;
+	}
+
+	public void addEmployeeBatch(EmployeeBatch employeeBatch) {
+		this.employeeBatches.add(employeeBatch);
+	}
 
 	@Override
 	public String toString() {
 		return "Batch [batchId=" + batchId + ", batchName=" + batchName + ", startDate=" + startDate + ", endDate="
 				+ endDate + ", skill=" + skill + ", batchLocation=" + batchLocation + ", batchType=" + batchType
 				+ ", goodGrade=" + goodGrade + ", passingGrade=" + passingGrade + ", currentWeek=" + currentWeek
-				+ ", associates=" + associates + "]";
+				+ ", associates=" + associates + ", employeeBatches=" + employeeBatches + "]";
 	}
-
 	
 }

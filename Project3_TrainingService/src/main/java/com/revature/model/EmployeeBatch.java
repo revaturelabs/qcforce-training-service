@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class EmployeeBatch{
 	
 	@EmbeddedId
-	private EmployeeBatchId id; //COMPOSITE KEY FOR EMPLOYEE ID AND BATCH NAME
+	private EmployeeBatchId employeeBatchId;
 	
 	@Column(name="employee_role")
 	private String employeeRole;	
@@ -31,17 +31,16 @@ public class EmployeeBatch{
 	private Employee employee; 
 	
 	@ManyToOne
-	@MapsId("batchName")
+	@MapsId("batchId")
 	private Batch batch;
 
 	public EmployeeBatch() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public EmployeeBatch(EmployeeBatchId id, String employeeRole, Date deletedAt, Employee employee, Batch batch) {
+	public EmployeeBatch(EmployeeBatchId employeeBatchId, String employeeRole, Date deletedAt, Employee employee, Batch batch) {
 		super();
-		this.id = id;
+		this.employeeBatchId = employeeBatchId;
 		this.employeeRole = employeeRole;
 		this.deletedAt = deletedAt;
 		this.employee = employee;
@@ -49,11 +48,11 @@ public class EmployeeBatch{
 	}
 
 	public EmployeeBatchId getId() {
-		return id;
+		return employeeBatchId;
 	}
 
-	public void setId(EmployeeBatchId id) {
-		this.id = id;
+	public void setEmployeeBatchId(EmployeeBatchId id) {
+		this.employeeBatchId = id;
 	}
 
 	public String getEmployeeRole() {
@@ -87,8 +86,11 @@ public class EmployeeBatch{
 	public void setBatch(Batch batch) {
 		this.batch = batch;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "EmployeeBatch [employeeBatchId=" + employeeBatchId + ", employeeRole=" + employeeRole + ", deletedAt=" + deletedAt + ", employee="
+				+ employee + ", batch=" + batch + "]";
+	}
 	
 }

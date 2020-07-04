@@ -1,9 +1,13 @@
 package com.revature.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
@@ -15,17 +19,20 @@ public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="employee_id")
-	private int employeeId; //PK
+	@Column(name="id")
+	private int employeeId;
 	
 	@Column(name="email")
 	private String email;
 	
-	@Column(name="employee_first_name")
-	private String firstname;
+	@Column(name="first_name")
+	private String firstName;
 	
-	@Column(name="employee_last_name")
-	private String lastname;
+	@Column(name="last_name")
+	private String lastName;
+	
+	@OneToMany(mappedBy="batch")
+	private List<EmployeeBatch> employeeBatches = new ArrayList<EmployeeBatch>();
 	
 	public int getEmployeeId() {
 		return employeeId;
@@ -43,28 +50,38 @@ public class Employee implements Serializable {
 		this.email = email;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstName(String firstname) {
+		this.firstName = firstname;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastname) {
+		this.lastName = lastname;
 	}
 
+	public List<EmployeeBatch> getEmployeeBatches() {
+		return employeeBatches;
+	}
+
+	public void setEmployeeBatches(List<EmployeeBatch> employeeBatches) {
+		this.employeeBatches = employeeBatches;
+	}
+
+	public void addEmployeeBatch(EmployeeBatch employeeBatch) {
+		this.employeeBatches.add(employeeBatch);
+	}
+	
 	@Override
 	public String toString() {
-		return "Employee [employeeId=" + employeeId + ", email=" + email + ", firstname=" + firstname + ", lastname="
-				+ lastname + "]";
+		return "Employee [employeeId=" + employeeId + ", email=" + email + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", employeeBatches=" + employeeBatches + "]";
 	}
 
-	
-	
 }

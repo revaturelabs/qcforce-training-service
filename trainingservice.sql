@@ -1,5 +1,10 @@
 CREATE SCHEMA qcforce_training;
 
+DROP TABLE IF EXISTS qcforce_training.associate CASCADE;
+DROP TABLE IF EXISTS qcforce_training.batch CASCADE;
+DROP TABLE IF EXISTS qcforce_training.employee CASCADE;
+DROP TABLE IF EXISTS qcforce_training.employee_batch CASCADE;
+
 CREATE TABLE qcforce_training.batch (
 	id						varchar NOT NULL PRIMARY KEY,
 	batch_name				varchar NOT NULL,
@@ -28,25 +33,25 @@ CREATE TABLE qcforce_training.associate (
 );
 
 CREATE TABLE qcforce_training.employee (
-	employee_id				serial PRIMARY KEY,
-	employee_email			varchar NOT NULL,
-	employee_first_name		varchar NOT NULL,
-	employee_last_name		varchar NOT NULL
+	id				serial PRIMARY KEY,
+	email			varchar NOT NULL,
+	first_name		varchar NOT NULL,
+	last_name		varchar NOT NULL
 );
 
 CREATE TABLE qcforce_training.employee_batch (
 	employee_id				int NOT NULL,
-	batch_name				varchar NOT NULL,
+	batch_id				varchar NOT NULL,
 	employee_role			varchar,
 	deleted_at				date,
-	PRIMARY KEY(employee_id, batch_name)
+	PRIMARY KEY(employee_id, batch_id)
 );
 
-alter table qcforce_training.employee_batch add constraint FK_employee_batch_employee_id
-	foreign key (employee_id) references qcforce_training.employee (employee_id) on delete cascade on update cascade;
+ALTER TABLE qcforce_training.employee_batch ADD CONSTRAINT FK_employee_batch_employee_id
+	FOREIGN KEY (employee_id) REFERENCES qcforce_training.employee (id) ON DELETE CASCADE ON UPDATE CASCADE;
 
-alter table qcforce_training.employee_batch add constraint FK_employee_batch_batch_name
-	foreign key (batch_name) references qcforce_training.batch (batch_name) on delete cascade on update cascade;
+ALTER TABLE qcforce_training.employee_batch ADD CONSTRAINT FK_employee_batch_batch_id
+	FOREIGN KEY (batch_id) REFERENCES qcforce_training.batch (id) ON DELETE CASCADE ON UPDATE CASCADE;
 
-alter table qcforce_training.associate add constraint FK_associate_batch_name
-	foreign key (batch_name) references qcforce_training.batch (batch_name) on delete cascade on update cascade;
+ALTER TABLE qcforce_training.associate ADD CONSTRAINT FK_associate_batch_id
+	FOREIGN KEY (batch_id) REFERENCES qcforce_training.batch (id) ON DELETE CASCADE ON UPDATE CASCADE;

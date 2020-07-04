@@ -14,10 +14,19 @@ public interface EmployeeBatchService {
 	public EmployeeBatch getEmployeeBatchByEmployeeRole(String employeeRole);
 	
 	public EmployeeBatch getEmployeeBatchByDeletedAt(Date deletedAt);
+
+	public List<EmployeeBatch> getEmployeeBatchByEmployeeBatchLocation(String batchLocation);
+
+	public List<EmployeeBatch> getEmployeeBatchByEmployeeBatchStartDate(Date batchStartDate);
+
+	public List<EmployeeBatch> getEmployeeBatchByCurrentWeek(String currentWeek);
+
+	public List<EmployeeBatch> getEmployeeBatchByEmployeeBatchType(String batchType);
 	
 	public void createEmployeeBatch(EmployeeBatch employeeBatch);
 
 	public void updateEmployeeBatch(EmployeeBatch employeeBatch);
 
 	public void deleteEmployeeBatch(EmployeeBatch employeeBatch);
+
 }

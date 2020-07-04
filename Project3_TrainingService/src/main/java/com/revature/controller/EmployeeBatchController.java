@@ -36,23 +36,23 @@ public class EmployeeBatchController {
 	}
 	
 	@GetMapping("/employeebatch/{employeeRole}")
-	public List<Employeebatch> getEmployeeBatchByEmployeeRole(@PathVariable("employeeRole")String employeeRole) {
-		return (List<EmployeeBatch>) EmployeeEmployeeEmployeeBatchService.getEmployeeBatchByEmployeeRole(employeeRole);
+	public List<EmployeeBatch> getEmployeeBatchByEmployeeRole(@PathVariable("employeeRole")String employeeRole) {
+		return (List<EmployeeBatch>) employeeBatchService.getEmployeeBatchByEmployeeRole(employeeRole);
 	}
 	
 	@GetMapping("/employeebatch/{batchLocation}")
 	public List<EmployeeBatch> getEmployeeBatchByEmployeeBatchLocation(@PathVariable("batchLocation")String batchLocation) {
-		return (List<EmployeeBatch>) EmployeeEmployeeEmployeeBatchService.getEmployeeBatchByEmployeeBatchLocation(batchLocation);
+		return (List<EmployeeBatch>) employeeBatchService.getEmployeeBatchByEmployeeBatchLocation(batchLocation);
 	}
 	
 	@GetMapping("/EmployeeBatch/{batchStartDate}")
 	public List<EmployeeBatch> getEmployeeBatchByEmployeeBatchStartDate(@PathVariable("batchStartDate")Date batchStartDate) {
-		return (List<EmployeeBatch>) EmployeeEmployeeEmployeeBatchService.getEmployeeBatchByEmployeeBatchStartDate(batchStartDate);
+		return (List<EmployeeBatch>) employeeBatchService.getEmployeeBatchByEmployeeBatchStartDate(batchStartDate);
 	}
 	
 	@GetMapping("/EmployeeBatch/{currentWeek}")
 	public List<EmployeeBatch> getEmployeeBatchByCurrentWeek(@PathVariable("currentWeek")String currentWeek) {
-		return (List<EmployeeBatch>) EmployeeEmployeeEmployeeBatchService.getEmployeeBatchByCurrentWeek(currentWeek);
+		return (List<EmployeeBatch>) employeeBatchService.getEmployeeBatchByCurrentWeek(currentWeek);
 	}
 	
 	@GetMapping("/batch/{batchType}")
@@ -62,7 +62,7 @@ public class EmployeeBatchController {
 	
 	@PostMapping("/batch")
 	public String createEmployeeBatch(@RequestBody EmployeeBatch batch) {
-		employeeEmployeeBatchService.createEmployeeBatch(batch);
+		employeeBatchService.createEmployeeBatch(batch);
 		return "EmployeeBatch successfully created";
 	}
 	
@@ -73,7 +73,7 @@ public class EmployeeBatchController {
 	}
 	
 	@DeleteMapping("/EmployeeBatch/{batchId}")
-	public String deleteEmployeeBatch(@PathParam("batchId") int batchId) {
+	public String deleteEmployeeBatch(@PathParam("batchId") EmployeeBatchId batchId) {
 		EmployeeBatch batch = new EmployeeBatch();
 		batch.setEmployeeBatchId(batchId);
 		employeeBatchService.deleteEmployeeBatch(batch);
