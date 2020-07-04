@@ -1,4 +1,4 @@
-package com.revature.service;
+package com.revature.listener;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;

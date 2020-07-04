@@ -10,13 +10,15 @@ public interface AssociateService {
 
 	public Associate getAssociateByAssociateId(int associateId);
 	
-	public Associate getAssociateBySalesforceId(int salesforceId);
+	public List<Associate> getAllAssociatesByBatchName(String batchName);
 	
-	public Associate getAssociateByBatchName(String batchName);
+	public List<Associate> getAllAssociatesByBatchNameAndActive(String batchName, boolean active);
 	
-	public Associate getActiveAssociateByBatchName(String batchName);
+	public List<Associate> getAllAssociatesByBatchId(String batchId);
 	
-	public Associate getAssociateByFullName(String associateFirstName, String associateLastName);
+	public List<Associate> getAllAssociatesByBatchIdAndActive(String batchId, boolean active);
+	
+	public List<Associate> getAllAssociatesByFullName(String associateFirstName, String associateLastName);
 	
 	public void createAssociate(Associate associate);
 

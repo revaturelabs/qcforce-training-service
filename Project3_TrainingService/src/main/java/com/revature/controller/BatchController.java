@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.revature.model.Batch;
 import com.revature.service.BatchService;
 
 @RestController
+@RequestMapping("batch")
 public class BatchController {
 
 	private BatchService batchService;
@@ -24,54 +26,119 @@ public class BatchController {
 		this.batchService = batchService;
 	}
 	
-	@GetMapping("/batch")
-	public List<Batch> getAllForms() {
+	@GetMapping("/")
+	public List<Batch> getAllBatches() {
 		return batchService.getAllBatches();
 	}
 	
-	@GetMapping("/batch/{batchName}")
-	public List<Batch> getBatchByBatchName(@PathVariable("batchName")String batchName) {
-		return (List<Batch>) batchService.getBatchByBatchName(batchName);
+	@GetMapping("/id/{batchId}")
+	public Batch getBatchByBatchId(@PathVariable("batchId") String batchId) {
+		return batchService.getBatchByBatchId(batchId);
 	}
 	
-	@GetMapping("/batch/{batchSkill}")
-	public List<Batch> getBatchByBatchSkill(@PathVariable("batchSkill")String batchSkill) {
-		return (List<Batch>) batchService.getBatchByBatchSkill(batchSkill);
+	@GetMapping("/name/{batchName}")
+	public Batch getBatchByBatchName(@PathVariable("batchName") String batchName) {
+		return batchService.getBatchByBatchName(batchName);
 	}
 	
-	@GetMapping("/batch/{batchLocation}")
-	public List<Batch> getBatchByBatchLocation(@PathVariable("batchLocation")String batchLocation) {
-		return (List<Batch>) batchService.getBatchByBatchLocation(batchLocation);
+	@GetMapping("/start-date/{date}")
+	public List<Batch> getBatchesByBatchStartDate(@PathVariable("date") Date date) {
+		return batchService.getBatchesByStartDate(date);
 	}
 	
-	@GetMapping("/Batch/{batchStartDate}")
-	public List<Batch> getBatchByBatchStartDate(@PathVariable("batchStartDate")Date batchStartDate) {
-		return (List<Batch>) batchService.getBatchByBatchStartDate(batchStartDate);
+	@GetMapping("/start-date-max/{date}")
+	public List<Batch> getBatchesByStartDateLessThan(@PathVariable("date") Date date) {
+		return batchService.getBatchesByStartDateLessThan(date);
+	}
+
+	@GetMapping("/start-date-min/{date}")
+	public List<Batch> getBatchesByStartDateGreaterThan(@PathVariable("date") Date date) {
+		return batchService.getBatchesByStartDateGreaterThan(date);
+	}
+
+	@GetMapping("/start-date-range/{dateOne}/{dateTwo}")
+	public List<Batch> getBatchesByStartDateBetween(@PathVariable("dateOne") Date dateOne, @PathVariable("dateTwo") Date dateTwo) {
+		return batchService.getBatchesByStartDateBetween(dateOne, dateTwo);
 	}
 	
-	@GetMapping("/Batch/{currentWeek}")
-	public List<Batch> getBatchByCurrentWeek(@PathVariable("currentWeek")String currentWeek) {
-		return (List<Batch>) batchService.getBatchByCurrentWeek(currentWeek);
+	@GetMapping("/end-date/{date}")
+	public List<Batch> getBatchesByEndDate(@PathVariable("date") Date date) {
+		return batchService.getBatchesByEndDate(date);
 	}
 	
-	@GetMapping("/batch/{batchType}")
-	public List<Batch> getBatchByBatchType(@PathVariable("batchType")String batchType) {
-		return (List<Batch>) batchService.getBatchByBatchType(batchType);
+	@GetMapping("/end-date-max/{date}")
+	public List<Batch> getBatchesByEndDateLessThan(@PathVariable("date") Date date) {
+		return batchService.getBatchesByEndDateLessThan(date);
+	}
+
+	@GetMapping("/end-date-min/{date}")
+	public List<Batch> getBatchesByEndDateGreaterThan(@PathVariable("date") Date date) {
+		return batchService.getBatchesByEndDateGreaterThan(date);
+	}
+
+	@GetMapping("/end-date-range/{dateOne}/{dateTwo}")
+	public List<Batch> getBatchesByEndDateBetween(@PathVariable("dateOne") Date dateOne, @PathVariable("dateTwo") Date dateTwo) {
+		return batchService.getBatchesByEndDateBetween(dateOne, dateTwo);
+	}
+
+	@GetMapping("/date-range/{dateOne}/{dateTwo}")
+	public List<Batch> getBatchesByStartDateGreaterThanAndEndDateLessThan(@PathVariable("dateOne") Date dateOne, @PathVariable("dateTwo") Date dateTwo) {
+		return batchService.getBatchesByStartDateGreaterThanAndEndDateLessThan(dateOne, dateTwo);
 	}
 	
-	@PostMapping("/batch")
+	@GetMapping("/skill/{skill}")
+	public List<Batch> getBatchesBySkill(@PathVariable("skill") String skill) {
+		return batchService.getBatchesBySkill(skill);
+	}
+	
+	@GetMapping("/location/{batchLocation}")
+	public List<Batch> getBatchByBatchLocation(@PathVariable("batchLocation") String batchLocation) {
+		return batchService.getBatchesByBatchLocation(batchLocation);
+	}
+
+	@GetMapping("/type/{batchType}")
+	public List<Batch> getBatchByBatchType(@PathVariable("batchType") String batchType) {
+		return batchService.getBatchesByBatchType(batchType);
+	}
+	
+	@GetMapping("/week/{currentWeek}")
+	public List<Batch> getBatchByCurrentWeek(@PathVariable("currentWeek") String currentWeek) {
+		return batchService.getBatchesByCurrentWeek(currentWeek);
+	}
+	
+	@GetMapping("/employee-id/{employeeId}")
+	public List<Batch> getBatchesByEmployeeId(@PathVariable("employeeId") int employeeId) {
+		return batchService.getBatchesByEmployeeId(employeeId);
+	}
+	
+	@GetMapping("/employee-name/{firstName}/{lastName}")
+	public List<Batch> getBatchesByEmployeeFullName(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
+		return batchService.getBatchesByEmployeeFullName(firstName, lastName);
+	}
+
+	@GetMapping("/trainer-id/{employeeId}")
+	public List<Batch> getBatchesByLeadTrainerEmployeeId(@PathVariable("employeeId") int employeeId) {
+		return batchService.getBatchesByLeadTrainerEmployeeId(employeeId);
+	}
+
+	@GetMapping("/trainer-name/{firstName}/{lastName}")
+	public List<Batch> getBatchesByLeadTrainerName(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
+		return batchService.getBatchesByLeadTrainerName(firstName, lastName);
+	}
+	
+	@PostMapping("/")
 	public String createBatch(@RequestBody Batch batch) {
 		batchService.createBatch(batch);
 		return "Batch successfully created";
 	}
 	
-	@PutMapping("/batch")
+	@PutMapping("/")
 	public String updateBatch(@RequestBody Batch batch) {
 		batchService.updateBatch(batch);
 		return "Batch successfully updated";
 	}
 	
-	@DeleteMapping("/Batch/{batchId}")
+	@DeleteMapping("/{batchId}")
 	public String deleteBatch(@PathParam("batchId") String batchId) {
 		Batch batch = new Batch();
 		batch.setBatchId(batchId);

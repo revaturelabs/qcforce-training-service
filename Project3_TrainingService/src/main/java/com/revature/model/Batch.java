@@ -12,12 +12,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Component
 @Entity
-@Table(name="qcforce_training.batch")
+@Table(name="batch", schema="qcforce_training")
 public class Batch implements Serializable{
 
-	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2748183932280317936L;
 
 	@Id
 	@Column(name="id")
@@ -42,10 +47,10 @@ public class Batch implements Serializable{
 	private String batchType;
 
 	@Column(name="good_grade")
-	private boolean goodGrade;
+	private int goodGrade;
 	
 	@Column(name="passing_grade")
-	private boolean passingGrade;
+	private int passingGrade;
 	
 	@Column(name="current_week")
 	private String currentWeek;
@@ -116,19 +121,19 @@ public class Batch implements Serializable{
 		this.batchType = batchType;
 	}
 
-	public boolean isGoodGrade() {
+	public int isGoodGrade() {
 		return goodGrade;
 	}
 
-	public void setGoodGrade(boolean goodGrade) {
+	public void setGoodGrade(int goodGrade) {
 		this.goodGrade = goodGrade;
 	}
 
-	public boolean isPassingGrade() {
+	public int isPassingGrade() {
 		return passingGrade;
 	}
 
-	public void setPassingGrade(boolean passingGrade) {
+	public void setPassingGrade(int passingGrade) {
 		this.passingGrade = passingGrade;
 	}
 
@@ -152,16 +157,103 @@ public class Batch implements Serializable{
 		this.associates.add(associate);
 	}
 	
+	@JsonIgnore
 	public List<EmployeeBatch> getEmployeeBatches() {
 		return employeeBatches;
 	}
 
+	@JsonIgnore
 	public void setEmployeeBatches(List<EmployeeBatch> employeeBatches) {
 		this.employeeBatches = employeeBatches;
 	}
-
+	
 	public void addEmployeeBatch(EmployeeBatch employeeBatch) {
 		this.employeeBatches.add(employeeBatch);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((associates == null) ? 0 : associates.hashCode());
+		result = prime * result + ((batchId == null) ? 0 : batchId.hashCode());
+		result = prime * result + ((batchLocation == null) ? 0 : batchLocation.hashCode());
+		result = prime * result + ((batchName == null) ? 0 : batchName.hashCode());
+		result = prime * result + ((batchType == null) ? 0 : batchType.hashCode());
+		result = prime * result + ((currentWeek == null) ? 0 : currentWeek.hashCode());
+		result = prime * result + ((employeeBatches == null) ? 0 : employeeBatches.hashCode());
+		result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
+		result = prime * result + goodGrade;
+		result = prime * result + passingGrade;
+		result = prime * result + ((skill == null) ? 0 : skill.hashCode());
+		result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Batch other = (Batch) obj;
+		if (associates == null) {
+			if (other.associates != null)
+				return false;
+		} else if (!associates.equals(other.associates))
+			return false;
+		if (batchId == null) {
+			if (other.batchId != null)
+				return false;
+		} else if (!batchId.equals(other.batchId))
+			return false;
+		if (batchLocation == null) {
+			if (other.batchLocation != null)
+				return false;
+		} else if (!batchLocation.equals(other.batchLocation))
+			return false;
+		if (batchName == null) {
+			if (other.batchName != null)
+				return false;
+		} else if (!batchName.equals(other.batchName))
+			return false;
+		if (batchType == null) {
+			if (other.batchType != null)
+				return false;
+		} else if (!batchType.equals(other.batchType))
+			return false;
+		if (currentWeek == null) {
+			if (other.currentWeek != null)
+				return false;
+		} else if (!currentWeek.equals(other.currentWeek))
+			return false;
+		if (employeeBatches == null) {
+			if (other.employeeBatches != null)
+				return false;
+		} else if (!employeeBatches.equals(other.employeeBatches))
+			return false;
+		if (endDate == null) {
+			if (other.endDate != null)
+				return false;
+		} else if (!endDate.equals(other.endDate))
+			return false;
+		if (goodGrade != other.goodGrade)
+			return false;
+		if (passingGrade != other.passingGrade)
+			return false;
+		if (skill == null) {
+			if (other.skill != null)
+				return false;
+		} else if (!skill.equals(other.skill))
+			return false;
+		if (startDate == null) {
+			if (other.startDate != null)
+				return false;
+		} else if (!startDate.equals(other.startDate))
+			return false;
+		return true;
 	}
 
 	@Override

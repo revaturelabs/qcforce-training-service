@@ -11,13 +11,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Component
 @Entity
-@Table(name="qcforce_training.trainer")
+@Table(name="employee", schema="qcforce_training")
 public class Employee implements Serializable {
-
-	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8708124273607132273L;
+
 	@Id
 	@Column(name="id")
 	private int employeeId;
@@ -31,7 +36,7 @@ public class Employee implements Serializable {
 	@Column(name="last_name")
 	private String lastName;
 	
-	@OneToMany(mappedBy="batch")
+	@OneToMany(mappedBy="employee")
 	private List<EmployeeBatch> employeeBatches = new ArrayList<EmployeeBatch>();
 	
 	public int getEmployeeId() {
@@ -66,16 +71,14 @@ public class Employee implements Serializable {
 		this.lastName = lastname;
 	}
 
+	@JsonIgnore
 	public List<EmployeeBatch> getEmployeeBatches() {
 		return employeeBatches;
 	}
 
+	@JsonIgnore
 	public void setEmployeeBatches(List<EmployeeBatch> employeeBatches) {
 		this.employeeBatches = employeeBatches;
-	}
-
-	public void addEmployeeBatch(EmployeeBatch employeeBatch) {
-		this.employeeBatches.add(employeeBatch);
 	}
 	
 	@Override

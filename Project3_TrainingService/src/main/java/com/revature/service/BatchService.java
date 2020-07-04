@@ -8,22 +8,48 @@ public interface BatchService {
 
 	public List<Batch> getAllBatches();
 
+	public Batch getBatchByBatchId(String batchId);
+
 	public Batch getBatchByBatchName(String batchName);
+
+	public List<Batch> getBatchesByStartDate(Date startDate);
+
+	public List<Batch> getBatchesByStartDateLessThan(Date date);
+
+	public List<Batch> getBatchesByStartDateGreaterThan(Date date);
+
+	public List<Batch> getBatchesByStartDateBetween(Date dateOne, Date dateTwo);
+
+	public List<Batch> getBatchesByEndDate(Date date);
+
+	public List<Batch> getBatchesByEndDateLessThan(Date date);
+
+	public List<Batch> getBatchesByEndDateGreaterThan(Date date);
+
+	public List<Batch> getBatchesByEndDateBetween(Date dateOne, Date dateTwo);
+
+	public List<Batch> getBatchesByStartDateGreaterThanAndEndDateLessThan(Date dateOne, Date dateTwo);
+
+	public List<Batch> getBatchesBySkill(String skill);
+
+	public List<Batch> getBatchesByBatchLocation(String batchLocation);
 	
-	public Batch getBatchByBatchSkill(String batchSkill);
+	public List<Batch> getBatchesByBatchType(String batchType);
+
+	public List<Batch> getBatchesByCurrentWeek(String currentWeek);
 	
-	public Batch getBatchByBatchLocation(String batchLocation);
+	public List<Batch> getBatchesByEmployeeId(int employeeId);
 	
-	public Batch getBatchByBatchStartDate(Date batch_start_date);
+	public List<Batch> getBatchesByEmployeeFullName(String firstName, String lastName);
 	
-	public Batch getBatchByCurrentWeek(String current_week);
+	public List<Batch> getBatchesByLeadTrainerEmployeeId(int employeeId);
 	
-	public Batch getBatchByBatchType(String type);
-	
+	public List<Batch> getBatchesByLeadTrainerName(String firstName, String lastName);
+
 	public void createBatch(Batch batch);
 
 	public void updateBatch(Batch batch);
 
 	public void deleteBatch(Batch batch);
-	
+
 }
