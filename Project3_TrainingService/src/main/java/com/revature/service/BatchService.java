@@ -49,6 +49,8 @@ public interface BatchService {
 	public void createBatch(Batch batch);
 
 	public void updateBatch(Batch batch);
+	
+	public void createOrUpdateBatch(Batch batch);
 
 	public void deleteBatch(Batch batch);
 

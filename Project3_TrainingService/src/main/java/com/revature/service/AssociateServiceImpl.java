@@ -64,6 +64,16 @@ public class AssociateServiceImpl implements AssociateService {
 	public void updateAssociate(Associate associate) {
 		associateRepo.findById(associate.getAssociateId()).ifPresent((existingAssociate) -> associateRepo.save(associate));
 	}
+	
+	@Override
+	public void createOrUpdateAssociate(Associate associate) {
+		if(!(associateRepo.findBySalesforceId(associate.getSalesforceId()) == null)) {
+			associate.setAssociateId(associateRepo.findBySalesforceId(associate.getSalesforceId()).getAssociateId());
+			updateAssociate(associate);
+		} else {
+			createAssociate(associate);
+		}
+	}
 
 	@Override
 	public void deleteAssociate(Associate associate) {

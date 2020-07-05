@@ -15,6 +15,8 @@ public interface EmployeeService {
 	public void createEmployee(Employee employee);
 
 	public void updateEmployee(Employee employee);
+	
+	public void createOrUpdateEmployee(Employee employee);
 
 	public void deleteEmployee(Employee employee);
 	

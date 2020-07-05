@@ -15,7 +15,7 @@ CREATE TABLE qcforce_training.batch (
 	batch_type				varchar NOT NULL,
 	good_grade				int,
 	passing_grade			int,
-	current_week			int
+	current_week			varchar
 );
 
 CREATE TABLE qcforce_training.associate (
@@ -43,7 +43,7 @@ CREATE TABLE qcforce_training.employee_batch (
 	employee_id				int NOT NULL,
 	batch_id				varchar NOT NULL,
 	employee_role			varchar,
-	deleted_at				date,
+	deleted_at				varchar,
 	PRIMARY KEY(employee_id, batch_id)
 );
 

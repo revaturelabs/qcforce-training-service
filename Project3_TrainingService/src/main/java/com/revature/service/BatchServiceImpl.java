@@ -125,15 +125,25 @@ public class BatchServiceImpl implements BatchService {
 	public void createBatch(Batch batch) {
 		batchRepo.save(batch);
 	}
-
+	
 	@Override
 	public void updateBatch(Batch batch) {
 		batchRepo.findById(batch.getBatchId()).ifPresent((existingBatch) -> batchRepo.save(batch));
 	}
 
 	@Override
+	public void createOrUpdateBatch(Batch batch) {
+		if(batchRepo.existsById(batch.getBatchId())) {
+			updateBatch(batch);
+		} else {
+			createBatch(batch);
+		}
+	}
+	
+	@Override
 	public void deleteBatch(Batch batch) {
 		batchRepo.delete(batch);
 	}
+
 
 }

@@ -9,6 +9,8 @@ import com.revature.model.Employee;
 @Repository
 public interface EmployeeRepo extends JpaRepository<Employee, Integer> {
 
-	List<Employee> findAllByFirstNameAndLastName(String firstName, String lastName);
+	public List<Employee> findAllByFirstNameAndLastName(String firstName, String lastName);
+
+	public Employee findByEmail(String email);
 
 }

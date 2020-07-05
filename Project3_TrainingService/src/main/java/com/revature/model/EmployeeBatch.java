@@ -1,7 +1,6 @@
 package com.revature.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -9,7 +8,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -29,21 +27,21 @@ public class EmployeeBatch implements Serializable{
 	private String employeeRole;	
 	
 	@Column(name="deleted_at")
-	private Date deletedAt;
+	private String deletedAt;
 	
 	@ManyToOne
 	@MapsId("employeeId")
-	Employee employee; 
+	private Employee employee; 
 	
 	@ManyToOne
 	@MapsId("batchId")
-	Batch batch;
+	private Batch batch;
 
 	public EmployeeBatch() {
-		super();
+		this.employeeBatchId = new EmployeeBatchId();
 	}
 
-	public EmployeeBatch(EmployeeBatchId employeeBatchId, String employeeRole, Date deletedAt, Employee employee, Batch batch) {
+	public EmployeeBatch(EmployeeBatchId employeeBatchId, String employeeRole, String deletedAt, Employee employee, Batch batch) {
 		super();
 		this.employeeBatchId = employeeBatchId;
 		this.employeeRole = employeeRole;
@@ -52,12 +50,12 @@ public class EmployeeBatch implements Serializable{
 		this.batch = batch;
 	}
 
-	public EmployeeBatchId getId() {
+	public EmployeeBatchId getEmployeeBatchId() {
 		return employeeBatchId;
 	}
 
-	public void setEmployeeBatchId(EmployeeBatchId id) {
-		this.employeeBatchId = id;
+	public void setEmployeeBatchId(int employeeId, String batchId) {
+		this.employeeBatchId = new EmployeeBatchId(employeeId, batchId);
 	}
 
 	public String getEmployeeRole() {
@@ -68,11 +66,11 @@ public class EmployeeBatch implements Serializable{
 		this.employeeRole = employeeRole;
 	}
 
-	public Date getDeletedAt() {
+	public String getDeletedAt() {
 		return deletedAt;
 	}
 
-	public void setDeletedAt(Date deletedAt) {
+	public void setDeletedAt(String deletedAt) {
 		this.deletedAt = deletedAt;
 	}
 

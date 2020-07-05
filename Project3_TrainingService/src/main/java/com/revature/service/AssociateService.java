@@ -23,6 +23,8 @@ public interface AssociateService {
 	public void createAssociate(Associate associate);
 
 	public void updateAssociate(Associate associate);
+	
+	public void createOrUpdateAssociate(Associate associate);
 
 	public void deleteAssociate(Associate associate);
 }

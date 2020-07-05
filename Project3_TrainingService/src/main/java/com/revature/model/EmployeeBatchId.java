@@ -17,7 +17,16 @@ public class EmployeeBatchId implements Serializable{
 	private int employeeId;
 
 	@Column(name = "batch_id")
-	private Batch batchId;
+	private String batchId;
+	
+	public EmployeeBatchId() {
+		super();
+	}
+
+	public EmployeeBatchId(int employeeId, String batchId) {
+		this.employeeId = employeeId;
+		this.batchId = batchId;
+	}
 
 	@Override
 	public int hashCode() {
