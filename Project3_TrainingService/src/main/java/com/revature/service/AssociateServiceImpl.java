@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,21 @@ public class AssociateServiceImpl implements AssociateService {
 	@Override
 	public List<Associate> getAllAssociatesByFullName(String firstName, String lastName) {
 		return associateRepo.findAllByFirstNameAndLastName(firstName, lastName);
+	}
+
+	@Override
+	public List<Associate> getAllActiveAssociates() {
+		return associateRepo.findAllByActive(true);
+	}
+
+	@Override
+	public List<String> getActiveAssociateEmails() {
+		List<Associate> activeAssociates = getAllActiveAssociates();
+		List<String> emails = new ArrayList<String>();
+		for(Associate activeAssociate : activeAssociates) {
+			emails.add(activeAssociate.getEmail());
+		}
+		return emails;
 	}
 
 	@Override

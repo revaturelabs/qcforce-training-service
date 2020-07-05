@@ -62,6 +62,11 @@ public class AssociateController {
 		return associateService.getAllAssociatesByFullName(firstName, lastName);
 	}
 	
+	@GetMapping("/active-emails")
+	public List<String> getActiveAssociateEmails() {
+		return associateService.getActiveAssociateEmails();
+	}
+	
 	@PostMapping("/")
 	public String createAssociate(@RequestBody Associate associate) {
 		associateService.createAssociate(associate);

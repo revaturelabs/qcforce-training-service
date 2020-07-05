@@ -20,6 +20,10 @@ public interface AssociateService {
 	
 	public List<Associate> getAllAssociatesByFullName(String associateFirstName, String associateLastName);
 	
+	public List<Associate> getAllActiveAssociates();
+	
+	public List<String> getActiveAssociateEmails();
+	
 	public void createAssociate(Associate associate);
 
 	public void updateAssociate(Associate associate);

@@ -22,5 +22,9 @@ public interface AssociateRepo extends JpaRepository<Associate, Integer> {
 
 	public List<Associate> findAllByBatchBatchIdAndActive(String batchId, boolean active);
 
+	public List<Associate> findAssociatesByActive(boolean b);
+
+	public List<Associate> findAllByActive(boolean b);
+
 }
 
