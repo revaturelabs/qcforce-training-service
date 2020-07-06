@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Associate implements Serializable{
 	
 	/**
-	 * 
+	 * This is a model class to hold associate information.
 	 */
 	private static final long serialVersionUID = -2631606611425902697L;
 

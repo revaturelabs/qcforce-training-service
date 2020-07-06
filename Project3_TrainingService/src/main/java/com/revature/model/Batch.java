@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Batch implements Serializable{
 
 	/**
-	 * 
+	 * This is a model class to hold batch information.
 	 */
 	private static final long serialVersionUID = -2748183932280317936L;
 

@@ -18,7 +18,7 @@ import com.revature.model.Employee;
 import com.revature.service.EmployeeService;
 
 @RestController
-@RequestMapping("employee")
+@RequestMapping(value="employee", produces="application/json")
 public class EmployeeController {
 	
 	private EmployeeService employeeService;

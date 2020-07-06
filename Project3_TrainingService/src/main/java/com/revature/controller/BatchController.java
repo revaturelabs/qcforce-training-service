@@ -16,7 +16,7 @@ import com.revature.model.Batch;
 import com.revature.service.BatchService;
 
 @RestController
-@RequestMapping("batch")
+@RequestMapping(value="batch", produces="application/json")
 public class BatchController {
 
 	private BatchService batchService;

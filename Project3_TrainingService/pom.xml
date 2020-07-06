@@ -14,7 +14,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Project3_TrainingService</name>
 	<description>Demo project for Spring Boot</description>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<properties>
 		<maven.compiler.target>1.8</maven.compiler.target>

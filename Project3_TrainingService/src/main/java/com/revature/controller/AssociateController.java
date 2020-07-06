@@ -17,7 +17,7 @@ import com.revature.model.Associate;
 import com.revature.service.AssociateService;
 
 @RestController
-@RequestMapping("associate")
+@RequestMapping(value="associate", produces="application/json")
 public class AssociateController {
 	
 	private AssociateService associateService;

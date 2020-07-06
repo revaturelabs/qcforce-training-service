@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Employee implements Serializable {
 	
 	/**
-	 * 
+	 * This is a model class to hold employee information.
 	 */
 	private static final long serialVersionUID = 8708124273607132273L;
 

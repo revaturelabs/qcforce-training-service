@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class EmployeeBatch implements Serializable{
 	
 	/**
-	 * 
+	 * This is a model class to hold employee information specific to a particular batch.
 	 */
 	private static final long serialVersionUID = 8272281938968388581L;
 
