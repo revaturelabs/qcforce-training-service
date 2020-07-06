@@ -1,6 +1,7 @@
 package com.revature.service;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +79,19 @@ public class BatchServiceImpl implements BatchService {
 
 	@Override
 	public List<Batch> getBatchesByStartDateGreaterThanAndEndDateLessThan(Date dateOne, Date dateTwo) {
-		return batchRepo.findAllByStartDateGreaterThanAndEndDateLessThan(dateOne, dateTwo);
+		return batchRepo.findAllByStartDateLessThanAndEndDateGreaterThan(dateOne, dateTwo);
+	}
+	
+	@Override
+	public List<String> getActiveBatches() {
+		Date today = new Date();
+		System.out.println(today);
+		List<Batch> activeBatches = batchRepo.findAllByStartDateLessThanAndEndDateGreaterThan(today, today);
+		List<String> activeBatchNames = new ArrayList<String>();
+		for(Batch activeBatch : activeBatches) {
+			activeBatchNames.add(activeBatch.getBatchName());
+		}
+		return activeBatchNames;
 	}
 
 	@Override
@@ -144,6 +157,5 @@ public class BatchServiceImpl implements BatchService {
 	public void deleteBatch(Batch batch) {
 		batchRepo.delete(batch);
 	}
-
 
 }

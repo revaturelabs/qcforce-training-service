@@ -1,6 +1,6 @@
 package com.revature.service;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import com.revature.model.Batch;
 
@@ -29,6 +29,8 @@ public interface BatchService {
 	public List<Batch> getBatchesByEndDateBetween(Date dateOne, Date dateTwo);
 
 	public List<Batch> getBatchesByStartDateGreaterThanAndEndDateLessThan(Date dateOne, Date dateTwo);
+	
+	public List<String> getActiveBatches();
 
 	public List<Batch> getBatchesBySkill(String skill);
 

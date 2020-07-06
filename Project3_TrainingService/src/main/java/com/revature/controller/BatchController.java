@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.model.Batch;
 import com.revature.service.BatchService;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value="batch", produces="application/json")
 public class BatchController {
@@ -84,6 +86,11 @@ public class BatchController {
 	@GetMapping("/date-range/{dateOne}/{dateTwo}")
 	public List<Batch> getBatchesByStartDateGreaterThanAndEndDateLessThan(@PathVariable("dateOne") Date dateOne, @PathVariable("dateTwo") Date dateTwo) {
 		return batchService.getBatchesByStartDateGreaterThanAndEndDateLessThan(dateOne, dateTwo);
+	}
+	
+	@GetMapping("/active")
+	public List<String> getActiveBatches() {
+		return batchService.getActiveBatches();
 	}
 	
 	@GetMapping("/skill/{skill}")

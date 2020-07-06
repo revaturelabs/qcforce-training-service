@@ -15,12 +15,12 @@ import com.revature.repo.AssociateRepo;
 public class AssociateServiceImpl implements AssociateService {
 
 	private AssociateRepo associateRepo;
-	
+
 	@Autowired
 	public void setAssociateRepo(AssociateRepo associateRepo) {
 		this.associateRepo = associateRepo;
 	}
-	
+
 	@Override
 	public List<Associate> getAllAssociates() {
 		return associateRepo.findAll();
@@ -50,7 +50,7 @@ public class AssociateServiceImpl implements AssociateService {
 	public List<Associate> getAllAssociatesByBatchIdAndActive(String batchId, boolean active) {
 		return associateRepo.findAllByBatchBatchIdAndActive(batchId, active);
 	}
-	
+
 	@Override
 	public List<Associate> getAllAssociatesByFullName(String firstName, String lastName) {
 		return associateRepo.findAllByFirstNameAndLastName(firstName, lastName);
@@ -65,7 +65,7 @@ public class AssociateServiceImpl implements AssociateService {
 	public List<String> getActiveAssociateEmails() {
 		List<Associate> activeAssociates = getAllActiveAssociates();
 		List<String> emails = new ArrayList<String>();
-		for(Associate activeAssociate : activeAssociates) {
+		for (Associate activeAssociate : activeAssociates) {
 			emails.add(activeAssociate.getEmail());
 		}
 		return emails;
@@ -78,12 +78,25 @@ public class AssociateServiceImpl implements AssociateService {
 
 	@Override
 	public void updateAssociate(Associate associate) {
-		associateRepo.findById(associate.getAssociateId()).ifPresent((existingAssociate) -> associateRepo.save(associate));
+		associateRepo.findById(associate.getAssociateId())
+				.ifPresent((existingAssociate) -> associateRepo.save(associate));
 	}
-	
+
+	/**
+	 * Searches the database to determine if the {@code associate} is already
+	 * included in the database, based on the {@code salesforceId}.
+	 * 
+	 * If found, the {@code updateAssociate(Associate associate)} method is called
+	 * to update the entry. Otherwise, a new entry is made using the
+	 * {@code createAssociate(Associate associate)} method.
+	 * 
+	 * @param associate An instance of {@code associate} without an
+	 *                  {@code associateId} assigned to it.
+	 * @see Associate
+	 */
 	@Override
 	public void createOrUpdateAssociate(Associate associate) {
-		if(!(associateRepo.findBySalesforceId(associate.getSalesforceId()) == null)) {
+		if (!(associateRepo.findBySalesforceId(associate.getSalesforceId()) == null)) {
 			associate.setAssociateId(associateRepo.findBySalesforceId(associate.getSalesforceId()).getAssociateId());
 			updateAssociate(associate);
 		} else {

@@ -1,6 +1,7 @@
 package com.revature.repo;
 
-import java.sql.Date;
+import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,7 +29,9 @@ public interface BatchRepo extends JpaRepository<Batch,String> {
 
 	List<Batch> findAllByEndDateBetween(Date dateOne, Date dateTwo);
 
-	List<Batch> findAllByStartDateGreaterThanAndEndDateLessThan(Date dateOne, Date dateTwo);
+	List<Batch> findAllByStartDateLessThanAndEndDateGreaterThan(Date dateOne, Date dateTwo);
+
+	List<Batch> findAllByStartDateGreaterThanAndEndDateLessThan(LocalDate today, LocalDate today2);
 
 	List<Batch> findAllBatchesBySkill(String skill);
 
