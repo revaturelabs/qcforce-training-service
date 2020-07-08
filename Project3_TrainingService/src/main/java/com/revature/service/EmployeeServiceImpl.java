@@ -9,17 +9,21 @@ import org.springframework.transaction.annotation.Transactional;
 import com.revature.model.Employee;
 import com.revature.repo.EmployeeRepo;
 
+/**
+ * Class which implements the {@link EmployeeService} interface for methods
+ * linked with the {@link Employee} class.
+ */
 @Service
 @Transactional
 public class EmployeeServiceImpl implements EmployeeService {
 
 	private EmployeeRepo employeeRepo;
-	
+
 	@Autowired
 	public void setEmployeeRepo(EmployeeRepo employeeRepo) {
 		this.employeeRepo = employeeRepo;
 	}
-	
+
 	@Override
 	public List<Employee> getAllEmployees() {
 		return employeeRepo.findAll();
@@ -44,10 +48,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void updateEmployee(Employee employee) {
 		employeeRepo.findById(employee.getEmployeeId()).ifPresent((existingEmployee) -> employeeRepo.save(employee));
 	}
-	
+
 	@Override
 	public void createOrUpdateEmployee(Employee employee) {
-		if(!(employeeRepo.findByEmail(employee.getEmail()) == null)) {
+		if (!(employeeRepo.findByEmail(employee.getEmail()) == null)) {
 			employee.setEmployeeId(employeeRepo.findByEmail(employee.getEmail()).getEmployeeId());
 			updateEmployee(employee);
 		} else {

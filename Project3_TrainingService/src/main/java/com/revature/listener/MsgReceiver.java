@@ -23,35 +23,77 @@ import com.revature.service.BatchService;
 import com.revature.service.EmployeeBatchService;
 import com.revature.service.EmployeeService;
 
+/**
+ * Receives batch data from a RabbitMQ message queue.
+ */
 @Service
 @Transactional
 public class MsgReceiver {
 
+	/**
+	 * Declaration of an AssociateService
+	 */
 	private AssociateService associateService;
+
+	/**
+	 * Declaration of a BatchService
+	 */
 	private BatchService batchService;
+
+	/**
+	 * Declaration of an EmployeeService
+	 */
 	private EmployeeService employeeService;
+
+	/**
+	 * Declaration of an EmployeeBatchService
+	 */
 	private EmployeeBatchService employeeBatchService;
 
+	/**
+	 * Instantiation of associateService
+	 * 
+	 * @param associateService an object of type {@code AssociateService}
+	 */
 	@Autowired
 	public void setAssociateService(AssociateService associateService) {
 		this.associateService = associateService;
 	}
 
+	/**
+	 * Instantiation of batchService
+	 * 
+	 * @param batchService an object of type {@code BatchService}
+	 */
 	@Autowired
 	public void setBatchService(BatchService batchService) {
 		this.batchService = batchService;
 	}
 
+	/**
+	 * Instantiation of employeeService
+	 */
 	@Autowired
 	public void setEmployeeService(EmployeeService employeeService) {
 		this.employeeService = employeeService;
 	}
 
+	/**
+	 * Instantiation of employeeBatchService
+	 */
 	@Autowired
 	public void setEmployeeBatchService(EmployeeBatchService employeeBatchService) {
 		this.employeeBatchService = employeeBatchService;
 	}
 
+	/**
+	 * Receives data from RabbitMQ messaging queue, and stores the data in an
+	 * instance of {@link NewBatch}. This data is extracted and stored into
+	 * {@link Associate}, {@link Batch}, {@link Employee}, and {@link EmployeeBatch}
+	 * instances, which are then persisted into the database.
+	 * 
+	 * @param newBatch
+	 */
 	@RabbitListener(queues = "BatchData-Queue")
 	public void recievedMessage(NewBatch newBatch) {
 		// System.out.println("Recieved Message: "+ newBatch.toString());
@@ -94,7 +136,8 @@ public class MsgReceiver {
 			employeeBatch.setDeletedAt((String) newEmployeeAssignment.getDeletedAt());
 			employeeBatchService.createOrUpdateEmployeeBatch(employeeBatch);
 		}
-		ArrayList<NewAssociateAssignment> newAssociateAssignments = (ArrayList<NewAssociateAssignment>) newBatch.getNewAssociateAssignments();
+		ArrayList<NewAssociateAssignment> newAssociateAssignments = (ArrayList<NewAssociateAssignment>) newBatch
+				.getNewAssociateAssignments();
 		for (NewAssociateAssignment newAssociateAssignment : newAssociateAssignments) {
 			Associate associate = new Associate();
 			associate.setTrainingStatus(newAssociateAssignment.getTrainingStatus());
@@ -121,7 +164,6 @@ public class MsgReceiver {
 			associate.setBatch(batch);
 			associateService.createOrUpdateAssociate(associate);
 		}
-		System.out.println("Successful!");
 	}
 
 }

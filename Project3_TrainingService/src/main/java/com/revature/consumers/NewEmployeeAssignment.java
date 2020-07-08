@@ -1,49 +1,38 @@
 package com.revature.consumers;
 
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * This class represents the information for an Employee.
- * 
- * @author Wei Wu, Andres Mateo Toledo Albarracin, Jose Canela
- *
+ * This is a model class used to hold employee information, with reference to a
+ * batch, when first pulled from the RabbitMQ message queue.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "role", "employee", "deletedAt" })
 public class NewEmployeeAssignment {
+
 	/**
-	 * variable of type {@link String} that represents the employee's role.
+	 * String holding an employee's role.
 	 */
 	@JsonProperty("role")
 	private String role;
+
 	/**
-	 * variable of type {@link NewEmployee} that represents the employee in that will
-	 * be assigned.
+	 * {@code NewEmployee} object that store's an employee's information that is
+	 * unrelated to any specific batch.
 	 */
 	@JsonProperty("employee")
 	private NewEmployee newEmployee;
+
 	/**
-	 *	
+	 * Object holding an employee's "deleted at" property.
 	 */
 	@JsonProperty("deletedAt")
 	private Object deletedAt;
-	/**
-	 * additional properties for the class.
-	 */
-	@JsonIgnore
-	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	/**
-	 * Gets assignment role.
-	 * 
-	 * @return role.
+	 * Getter method for retrieving an employee's role.
 	 */
 	@JsonProperty("role")
 	public String getRole() {
@@ -51,9 +40,7 @@ public class NewEmployeeAssignment {
 	}
 
 	/**
-	 * Sets assignment role.
-	 * 
-	 * @param role new role.
+	 * Setter method for setting an employee's role.
 	 */
 	@JsonProperty("role")
 	public void setRole(String role) {
@@ -61,9 +48,8 @@ public class NewEmployeeAssignment {
 	}
 
 	/**
-	 * Gets assignment employee.
-	 * 
-	 * @return assignment employee.
+	 * Getter method for retrieving a {@link NewEmployee} object with the employee's
+	 * information.
 	 */
 	@JsonProperty("newEmployee")
 	public NewEmployee getNewEmployee() {
@@ -71,9 +57,8 @@ public class NewEmployeeAssignment {
 	}
 
 	/**
-	 * Sets assignment employee.
-	 * 
-	 * @param employee assignment employee.
+	 * Setter method for assigning a {@link NewEmployee} object to an instance of
+	 * {@link NewEmployeeAssignment}.
 	 */
 	@JsonProperty("newEmployee")
 	public void setNewEmployee(NewEmployee newEmployee) {
@@ -81,9 +66,7 @@ public class NewEmployeeAssignment {
 	}
 
 	/**
-	 * Unimplemented deleteAt variable
-	 * 
-	 * @return not implemented
+	 * Getter method for retrieving an employee's "deleted at" property.
 	 */
 	@JsonProperty("deletedAt")
 	public Object getDeletedAt() {
@@ -91,9 +74,7 @@ public class NewEmployeeAssignment {
 	}
 
 	/**
-	 * Unimplemented deleteAt variable
-	 * 
-	 * @param deletedAt not implemented
+	 * Setter method for setting an employee's "deleted at" property.
 	 */
 	@JsonProperty("deletedAt")
 	public void setDeletedAt(Object deletedAt) {
@@ -101,30 +82,13 @@ public class NewEmployeeAssignment {
 	}
 
 	/**
-	 * Gets additional properties for an EmployeeAssignment.
-	 * 
-	 * @return a map of additional properties.
+	 * Method for representing an instance of the {@code NewEmployeeAssignment}
+	 * class as a String.
 	 */
-	@JsonAnyGetter
-	public Map<String, Object> getAdditionalProperties() {
-		return this.additionalProperties;
-	}
-
-	/**
-	 * Sets additional properties for an EmployeeAssignment.
-	 * 
-	 * @param name  property name.
-	 * @param value property value.
-	 */
-	@JsonAnySetter
-	public void setAdditionalProperty(String name, Object value) {
-		this.additionalProperties.put(name, value);
-	}
-
 	@Override
 	public String toString() {
-		return "EmployeeAssignment [getRole()=" + getRole() + ", getNewEmployee()=" + getNewEmployee() + ", getDeletedAt()="
-				+ getDeletedAt() + ", getAdditionalProperties()=" + getAdditionalProperties() + "]";
+		return "EmployeeAssignment [getRole()=" + getRole() + ", getNewEmployee()=" + getNewEmployee()
+				+ ", getDeletedAt()=" + getDeletedAt() + "]";
 	}
 
 }

@@ -10,6 +10,10 @@ import com.revature.model.EmployeeBatch;
 import com.revature.model.EmployeeBatchId;
 import com.revature.repo.EmployeeBatchRepo;
 
+/**
+ * Class which implements the {@link EmployeeBatchService} interface for methods
+ * linked with the {@link EmployeeBatch} class.
+ */
 @Service
 @Transactional
 public class EmployeeBatchServiceImpl implements EmployeeBatchService {
@@ -44,7 +48,8 @@ public class EmployeeBatchServiceImpl implements EmployeeBatchService {
 
 	@Override
 	public void createOrUpdateEmployeeBatch(EmployeeBatch employeeBatch) {
-		employeeBatch.setEmployeeBatchId(employeeBatch.getEmployee().getEmployeeId(), employeeBatch.getBatch().getBatchId());
+		employeeBatch.setEmployeeBatchId(employeeBatch.getEmployee().getEmployeeId(),
+				employeeBatch.getBatch().getBatchId());
 		if (employeeBatchRepo.existsById(employeeBatch.getEmployeeBatchId())) {
 			updateEmployeeBatch(employeeBatch);
 		} else {

@@ -15,145 +15,291 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * This is a model class to hold associate information.
+ */
 @Component
 @Entity
-@Table(name="associate", schema="qcforce_training")
-public class Associate implements Serializable{
-	
+@Table(name = "associate", schema = "qcforce_training")
+public class Associate implements Serializable {
+
 	/**
-	 * This is a model class to hold associate information.
+	 * Auto-generated serialVersionUID.
 	 */
 	private static final long serialVersionUID = -2631606611425902697L;
 
+	/**
+	 * int holding an associate's ID.
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name = "id")
 	private int associateId;
-	
-	@Column(name="training_status")
+
+	/**
+	 * String holding an associate's training status.
+	 */
+	@Column(name = "training_status")
 	private String trainingStatus;
-	
-	@Column(name="email")
+
+	/**
+	 * String holding an associate's email address.
+	 */
+	@Column(name = "email")
 	private String email;
 
-	@Column(name="salesforce_id")
+	/**
+	 * String holding an associate's salesforce ID.
+	 */
+	@Column(name = "salesforce_id")
 	private String salesforceId;
-	
-	@Column(name="first_name")
+
+	/**
+	 * String holding an associate's first name.
+	 */
+	@Column(name = "first_name")
 	private String firstName;
-	
-	@Column(name="last_name")
+
+	/**
+	 * String holding an associate's last name.
+	 */
+	@Column(name = "last_name")
 	private String lastName;
-	
-	@Column(name="flag")
+
+	/**
+	 * String holding an associate's flag.
+	 */
+	@Column(name = "flag")
 	private String flag;
 
-	@Column(name="start_date")
+	/**
+	 * {@code Date} object holding an associate's start date.
+	 */
+	@Column(name = "start_date")
 	private Date startDate;
-	
-	@Column(name="end_date")
+
+	/**
+	 * {@code Date} object holding an associate's end date.
+	 */
+	@Column(name = "end_date")
 	private Date endDate;
 
-	@Column(name="active")
+	/**
+	 * boolean holding an associate's "active" status.
+	 */
+	@Column(name = "active")
 	private boolean active;
 
+	/**
+	 * {@link Batch} that a given {@code Associate} object is in.
+	 */
 	@ManyToOne
 	private Batch batch;
-	
+
+	/**
+	 * Default constructor method for {@code Associate} objects.
+	 */
 	public Associate() {
 		super();
 	}
 
+	/**
+	 * Getter method for retrieving an associate's ID.
+	 * 
+	 * @return associate id
+	 */
 	public int getAssociateId() {
 		return associateId;
 	}
 
+	/**
+	 * Setter method for setting an associate's ID.
+	 */
 	public void setAssociateId(int associateId) {
 		this.associateId = associateId;
 	}
 
+	/**
+	 * Getter method for retrieving an associate's training status.
+	 * 
+	 * @return training status of associate
+	 */
 	public String getTrainingStatus() {
 		return trainingStatus;
 	}
 
+	/**
+	 * Setter method for setting an associate's training status.
+	 * 
+	 * @param trainingStatus is status of the training
+	 */
 	public void setTrainingStatus(String trainingStatus) {
 		this.trainingStatus = trainingStatus;
 	}
 
+	/**
+	 * Getter method for retrieving an associate's email address.
+	 * 
+	 * @return an email
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * Sets an email
+	 * 
+	 * @param email is email
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/**
+	 * Getter method for retrieving an associate's salesforce ID.
+	 */
 	public String getSalesforceId() {
 		return salesforceId;
 	}
 
+	/**
+	 * Setter method for setting an associate's salesforce ID.
+	 * 
+	 * @param salesforceId is salesforce id of associate
+	 */
 	public void setSalesforceId(String salesforceId) {
 		this.salesforceId = salesforceId;
 	}
 
+	/**
+	 * Getter method for retrieving an associate's first name.
+	 * 
+	 * @return first name of the associate
+	 */
 	public String getFirstName() {
 		return firstName;
 	}
 
+	/**
+	 * Setter method for setting an associate's first name.
+	 * 
+	 * @param firstName is first name of the associate
+	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
+	/**
+	 * Getter method for retrieving an associate's last name.
+	 * 
+	 * @return last name of the associate
+	 */
 	public String getLastName() {
 		return lastName;
 	}
 
+	/**
+	 * Setter method for setting an associate's last name.
+	 * 
+	 * @param lastName is last name of associate
+	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
+	/**
+	 * Getter method for retrieving an associate's flag attribute.
+	 * 
+	 * @return a flag
+	 */
 	public String getFlag() {
 		return flag;
 	}
 
+	/**
+	 * Setter method for setting an associate's flag attribute.
+	 * 
+	 * @param flag is a flag
+	 */
 	public void setFlag(String flag) {
 		this.flag = flag;
 	}
 
+	/**
+	 * Getter method for retrieving an associate's start date.
+	 * 
+	 * @return a start date
+	 */
 	public Date getStartDate() {
 		return startDate;
 	}
 
+	/**
+	 * Setter method for setting an associate's start date
+	 * 
+	 * @param startDate is the start date
+	 */
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
+	/**
+	 * Getter method for retrieving an associate's end date.
+	 * 
+	 * @return an end date
+	 */
 	public Date getEndDate() {
 		return endDate;
 	}
 
+	/**
+	 * Setter method for setting an associate's end date.
+	 * 
+	 * @param endDate is end date
+	 */
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
+	/**
+	 * Getter method for retrieving an associate's "active" status
+	 * 
+	 * @return active for an active batch
+	 */
 	public boolean isActive() {
 		return active;
 	}
 
+	/**
+	 * Setter method for setting an associate's "active" status.
+	 */
 	public void setActive(boolean active) {
 		this.active = active;
 	}
 
+	/**
+	 * Getter method for retrieving an associate's {@link Batch}.
+	 * 
+	 * @return batch
+	 */
 	@JsonIgnore
 	public Batch getBatch() {
 		return batch;
 	}
 
+	/**
+	 * Setter method for setting an associate's {@link Batch}.
+	 * 
+	 * @param batch is batch
+	 */
 	@JsonIgnore
 	public void setBatch(Batch batch) {
 		this.batch = batch;
 	}
 
+	/**
+	 * Method for creating a hash for an associate.
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -172,6 +318,9 @@ public class Associate implements Serializable{
 		return result;
 	}
 
+	/**
+	 * Method for comparing two associates.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -233,12 +382,16 @@ public class Associate implements Serializable{
 		return true;
 	}
 
+	/**
+	 * Method for representing an instance of the {@code Associate} class as a
+	 * String.
+	 */
 	@Override
 	public String toString() {
 		return "Associate [associateId=" + associateId + ", trainingStatus=" + trainingStatus + ", email=" + email
 				+ ", salesforceId=" + salesforceId + ", firstName=" + firstName + ", lastName=" + lastName + ", flag="
-				+ flag + ", startDate=" + startDate + ", endDate=" + endDate + ", active=" + active + ", batch="
-				+ batch + "]";
+				+ flag + ", startDate=" + startDate + ", endDate=" + endDate + ", active=" + active + ", batch=" + batch
+				+ "]";
 	}
-	
+
 }

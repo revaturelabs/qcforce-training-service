@@ -1,48 +1,37 @@
 package com.revature.consumers;
 
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * This class represents the information for an Employee.
- * 
- * @author Wei Wu, Andres Mateo Toledo Albarracin, Jose Canela
+ * This is a model class used to hold employee information when first pulled
+ * from the RabbitMQ message queue.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "email", "firstName", "lastName" })
 public class NewEmployee {
 
 	/**
-	 * variable of type {@link String} that represents the employee's email.
+	 * String holding an employee's email address.
 	 */
 	@JsonProperty("email")
 	private String email;
+
 	/**
-	 * variable of type {@link String} that represents the employee's first name.
+	 * String holding an employee's first name.
 	 */
 	@JsonProperty("firstName")
 	private String firstName;
+
 	/**
-	 * variable of type {@link String} that represents the employee's last name.
+	 * String holding an employee's last name.
 	 */
 	@JsonProperty("lastName")
 	private String lastName;
-	/**
-	 * additional properties an employee might have.
-	 */
-	@JsonIgnore
-	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	/**
-	 * Gets the Employee's email.
-	 * 
-	 * @return email.
+	 * Getter method for retrieving an employee's email address.
 	 */
 	@JsonProperty("email")
 	public String getEmail() {
@@ -50,9 +39,7 @@ public class NewEmployee {
 	}
 
 	/**
-	 * Sets the Employee's email.
-	 * 
-	 * @param email new email.
+	 * Setter method for setting an employee's email address.
 	 */
 	@JsonProperty("email")
 	public void setEmail(String email) {
@@ -60,9 +47,7 @@ public class NewEmployee {
 	}
 
 	/**
-	 * Gets the Employee's first name.
-	 * 
-	 * @return first name.
+	 * Getter method for retrieving an employee's first name.
 	 */
 	@JsonProperty("firstName")
 	public String getFirstName() {
@@ -70,9 +55,7 @@ public class NewEmployee {
 	}
 
 	/**
-	 * Sets the Employee's first name.
-	 * 
-	 * @param firstName new first name.
+	 * Setter method for setting an employee's first name.
 	 */
 	@JsonProperty("firstName")
 	public void setFirstName(String firstName) {
@@ -80,9 +63,7 @@ public class NewEmployee {
 	}
 
 	/**
-	 * Gets the Employee's last name.
-	 * 
-	 * @return last name.
+	 * Getter method for retrieving an employee's last name.
 	 */
 	@JsonProperty("lastName")
 	public String getLastName() {
@@ -90,9 +71,7 @@ public class NewEmployee {
 	}
 
 	/**
-	 * Sets the Employee's last name.
-	 * 
-	 * @param lastName new last name
+	 * Setter method for setting an employee's last name.
 	 */
 	@JsonProperty("lastName")
 	public void setLastName(String lastName) {
@@ -100,30 +79,13 @@ public class NewEmployee {
 	}
 
 	/**
-	 * Gets additional properties for an Employee.
-	 * 
-	 * @return a map of additional properties.
+	 * Method for representing an instance of the {@code NewEmployee} class as a
+	 * String.
 	 */
-	@JsonAnyGetter
-	public Map<String, Object> getAdditionalProperties() {
-		return this.additionalProperties;
-	}
-
-	/**
-	 * Sets additional properties for an Employee.
-	 * 
-	 * @param name  property name.
-	 * @param value property value.
-	 */
-	@JsonAnySetter
-	public void setAdditionalProperty(String name, Object value) {
-		this.additionalProperties.put(name, value);
-	}
-
 	@Override
 	public String toString() {
 		return "Employee [getEmail()=" + getEmail() + ", getFirstName()=" + getFirstName() + ", getLastName()="
-				+ getLastName() + ", getAdditionalProperties()=" + getAdditionalProperties() + "]";
+				+ getLastName() + "]";
 	}
 
 }

@@ -10,6 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.revature.model.Associate;
 import com.revature.repo.AssociateRepo;
 
+/**
+ * Class which implements the {@link AssociateService} interface for methods
+ * linked with the {@link Associate} class.
+ */
 @Service
 @Transactional
 public class AssociateServiceImpl implements AssociateService {

@@ -11,9 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * This class represents the information for a batch.
- * 
- * @author Wei Wu, Andres Mateo Toledo Albarracin, Jose Canela
+ * This is a model class used to hold batch information when first pulled from
+ * the RabbitMQ message queue.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "id", "batchId", "name", "startDate", "endDate", "skill", "location", "type", "goodGrade",
@@ -21,77 +20,88 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class NewBatch {
 
 	/**
-	 * variable of type {@link Integer} that represents the internal batch id.
+	 * Integer holding the ID variable used to identify the batch in the program
+	 * these data are coming from (not used locally).
 	 */
 	@JsonProperty("id")
 	private Integer id;
+
 	/**
-	 * variable of type {@link String} that represents the batch id.
+	 * String holding a batch's ID.
 	 */
 	@JsonProperty("batchId")
 	private String batchId;
+
 	/**
-	 * variable of type {@link String} that represents the batch name.
+	 * String holding a batch's name.
 	 */
 	@JsonProperty("name")
 	private String name;
+
 	/**
-	 * variable of type {@link String} that represents the batch start date.
+	 * String holding a batch's start date.
 	 */
 	@JsonProperty("startDate")
 	private String startDate;
+
 	/**
-	 * variable of type {@link String} that represents the batch end date.
+	 * String holding a batch's end date.
 	 */
 	@JsonProperty("endDate")
 	private String endDate;
+
 	/**
-	 * variable of type {@link String} that represents the specific skill focus for
-	 * the batch.
+	 * String holding the skill for a given batch.
 	 */
 	@JsonProperty("skill")
 	private String skill;
+
 	/**
-	 * variable of type {@link String} that represents the batch location.
+	 * String holding the location for a given batch.
 	 */
 	@JsonProperty("location")
 	private String location;
+
 	/**
-	 * variable of type {@link String} that represents the batch type.
+	 * String holding the type for a given batch.
 	 */
 	@JsonProperty("type")
 	private String type;
+
 	/**
-	 * variable of type {@link String} that represents the batch acceptable grade.
+	 * String holding the "good grade" variable for a given batch.
 	 */
 	@JsonProperty("goodGrade")
 	private Integer goodGrade;
+
 	/**
-	 * variable of type {@link String} that represents the batch passing grade.
+	 * String holding the "passing grade" variable for a given batch.
 	 */
 	@JsonProperty("passingGrade")
 	private Integer passingGrade;
+
 	/**
-	 * array of type {@link List}<{@link EmployeeAssignment}> that represents all
-	 * the assigned employees the batch has.
+	 * List of {@code NewEmployeeAssignment} variables associated with a given
+	 * batch.
 	 */
 	@JsonProperty("employeeAssignments")
 	private List<NewEmployeeAssignment> newEmployeeAssignments = null;
+
 	/**
-	 * additional properties the class may have.
+	 * List of {@code NewAssociateAssignment} variables associated with a given
+	 * batch.
 	 */
 	@JsonProperty("associateAssignments")
 	private List<NewAssociateAssignment> newAssociateAssignments = null;
+
 	/**
-	 * additional properties the class may have.
+	 * Additional properties the class may have, stored in a {@code HashMap}.
 	 */
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	/**
-	 * Gets internal batch id.
-	 * 
-	 * @return internal batch id.
+	 * Getter method for retrieving a batch's "ID" property.
 	 */
 	@JsonProperty("id")
 	public Integer getId() {
@@ -99,9 +109,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Sets internal batch id.
-	 * 
-	 * @param id new internal batch id.
+	 * Setter method for setting a batch's "ID" property.
 	 */
 	@JsonProperty("id")
 	public void setId(Integer id) {
@@ -109,9 +117,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Gets batch id.
-	 * 
-	 * @return batch id.
+	 * Getter method for retrieving a batch's ID.
 	 */
 	@JsonProperty("batchId")
 	public String getBatchId() {
@@ -119,9 +125,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Sets batch id.
-	 * 
-	 * @param batchId new batch id.
+	 * Setter method for setting a batch's ID.
 	 */
 	@JsonProperty("batchId")
 	public void setBatchId(String batchId) {
@@ -129,9 +133,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Gets batch name.
-	 * 
-	 * @return batch name.
+	 * Getter method for retrieving a batch's name.
 	 */
 	@JsonProperty("name")
 	public String getName() {
@@ -139,9 +141,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Sets batch name.
-	 * 
-	 * @param name new batch name.
+	 * Setter method for setting a batch's name.
 	 */
 	@JsonProperty("name")
 	public void setName(String name) {
@@ -149,9 +149,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Gets batch start data.
-	 * 
-	 * @return batch start date.
+	 * Getter method for retrieving a batch's start date.
 	 */
 	@JsonProperty("startDate")
 	public String getStartDate() {
@@ -159,9 +157,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Sets batch start date.
-	 * 
-	 * @param startDate new batch start date.
+	 * Setter method for setting a batch's start date.
 	 */
 	@JsonProperty("startDate")
 	public void setStartDate(String startDate) {
@@ -169,9 +165,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Gets batch end date.
-	 * 
-	 * @return batch end date.
+	 * Getter method for retrieving a batch's end date.
 	 */
 	@JsonProperty("endDate")
 	public String getEndDate() {
@@ -179,9 +173,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Sets batch end date.
-	 * 
-	 * @param endDate new batch end date.
+	 * Setter method for setting a batch's end date.
 	 */
 	@JsonProperty("endDate")
 	public void setEndDate(String endDate) {
@@ -189,9 +181,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Gets batch skill.
-	 * 
-	 * @return batch skill.
+	 * Getter method for retrieving a batch's skill.
 	 */
 	@JsonProperty("skill")
 	public String getSkill() {
@@ -199,9 +189,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Sets batch skill.
-	 * 
-	 * @param skill new batch skill.
+	 * Setter method for setting a batch's skill.
 	 */
 	@JsonProperty("skill")
 	public void setSkill(String skill) {
@@ -209,9 +197,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Gets batch location.
-	 * 
-	 * @return batch location.
+	 * Getter method for retrieving a batch's location.
 	 */
 	@JsonProperty("location")
 	public String getLocation() {
@@ -219,9 +205,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Sets batch location.
-	 * 
-	 * @param location new batch location.
+	 * Setter method for setting a batch's location.
 	 */
 	@JsonProperty("location")
 	public void setLocation(String location) {
@@ -229,9 +213,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Gets batch type.
-	 * 
-	 * @return batch type.
+	 * Getter method for retrieving a batch's type.
 	 */
 	@JsonProperty("type")
 	public String getType() {
@@ -239,9 +221,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Sets batch type.
-	 * 
-	 * @param type new batch type.
+	 * Setter method for setting a batch's type.
 	 */
 	@JsonProperty("type")
 	public void setType(String type) {
@@ -249,9 +229,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Gets batch acceptable grade.
-	 * 
-	 * @return acceptable good grade.
+	 * Getter method for retrieving a batch's "good grade".
 	 */
 	@JsonProperty("goodGrade")
 	public Integer getGoodGrade() {
@@ -259,9 +237,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Sets batch acceptable grade.
-	 * 
-	 * @param goodGrade new good grade.
+	 * Setter method for setting a batch's "good grade".
 	 */
 	@JsonProperty("goodGrade")
 	public void setGoodGrade(Integer goodGrade) {
@@ -269,9 +245,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Gets batch passing grade.
-	 * 
-	 * @return passing grade.
+	 * Getter method for retrieving a batch's "passing grade".
 	 */
 	@JsonProperty("passingGrade")
 	public Integer getPassingGrade() {
@@ -279,9 +253,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Sets batch passing grade.
-	 * 
-	 * @param passingGrade new passing grade.
+	 * Setter method for setting a batch's "passing grade".
 	 */
 	@JsonProperty("passingGrade")
 	public void setPassingGrade(Integer passingGrade) {
@@ -289,9 +261,8 @@ public class NewBatch {
 	}
 
 	/**
-	 * Gets a list of employees assigned to the batch.
-	 * 
-	 * @return employee assignment list.
+	 * Getter method for retrieving a batch's list of related
+	 * {@code NewEmployeeAssignment} entities.
 	 */
 	@JsonProperty("newEmployeeAssignments")
 	public List<NewEmployeeAssignment> getNewEmployeeAssignments() {
@@ -299,19 +270,17 @@ public class NewBatch {
 	}
 
 	/**
-	 * Sets the employees assigned to the batch.
-	 * 
-	 * @param newEmployeeAssignments new assignment list.
+	 * Setter method for setting a batch's list of related
+	 * {@code NewEmployeeAssignment} entities.
 	 */
 	@JsonProperty("newAssociateAssignments")
 	public void setNewAssociateAssignments(List<NewAssociateAssignment> newAssociateAssignments) {
 		this.newAssociateAssignments = newAssociateAssignments;
 	}
-	
+
 	/**
-	 * Gets a list of employees assigned to the batch.
-	 * 
-	 * @return employee assignment list.
+	 * Getter method for retrieving a batch's list of related
+	 * {@code NewAssociateAssignment} entities.
 	 */
 	@JsonProperty("newAssociateAssignments")
 	public List<NewAssociateAssignment> getNewAssociateAssignments() {
@@ -319,9 +288,8 @@ public class NewBatch {
 	}
 
 	/**
-	 * Sets the employees assigned to the batch.
-	 * 
-	 * @param newEmployeeAssignments new assignment list.
+	 * Setter method for setting a batch's list of related
+	 * {@code NewAssociateAssignment} entities.
 	 */
 	@JsonProperty("newEmployeeAssignments")
 	public void setNewEmployeeAssignments(List<NewEmployeeAssignment> newEmployeeAssignments) {
@@ -329,9 +297,7 @@ public class NewBatch {
 	}
 
 	/**
-	 * Gets additional properties.
-	 * 
-	 * @return additional properties.
+	 * Getter method for retrieving a batch's additional properties.
 	 */
 	@JsonAnyGetter
 	public Map<String, Object> getAdditionalProperties() {
@@ -339,16 +305,18 @@ public class NewBatch {
 	}
 
 	/**
-	 * Sets additional properties
-	 * 
-	 * @param name  property name
-	 * @param value property value
+	 * Setter method for setting a batch's additional properties, as key/value
+	 * pairs.
 	 */
 	@JsonAnySetter
 	public void setAdditionalProperty(String name, Object value) {
 		this.additionalProperties.put(name, value);
 	}
 
+	/**
+	 * Method for representing an instance of the {@code NewBatch} class as a
+	 * String.
+	 */
 	@Override
 	public String toString() {
 		return "NewBatch [id=" + id + ", batchId=" + batchId + ", name=" + name + ", startDate=" + startDate
