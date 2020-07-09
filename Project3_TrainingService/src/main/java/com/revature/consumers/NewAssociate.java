@@ -13,37 +13,39 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class NewAssociate {
 
 	/**
-	 * String holding an associate's email address.
+	 * String holding an associate's email address
 	 */
 	@JsonProperty("email")
 	private String email;
 
 	/**
-	 * String holding an associate's salesforce ID.
+	 * String holding an associate's salesforce ID
 	 */
 	@JsonProperty("salesforceId")
 	private String salesforceId;
 
 	/**
-	 * String holding an associate's first name.
+	 * String holding an associate's first name
 	 */
 	@JsonProperty("firstName")
 	private String firstName;
 
 	/**
-	 * String holding an associate's last name.
+	 * String holding an associate's last name
 	 */
 	@JsonProperty("lastName")
 	private String lastName;
 
 	/**
-	 * String holding an associate's flag attribute.
+	 * String holding an associate's flag attribute
 	 */
 	@JsonProperty("flag")
 	private String flag;
 
 	/**
-	 * Getter method for retrieving an associate's email address.
+	 * Getter method for retrieving an associate's email address
+	 * 
+	 * @return an associate's email address
 	 */
 	@JsonProperty("email")
 	public String getEmail() {
@@ -51,7 +53,9 @@ public class NewAssociate {
 	}
 
 	/**
-	 * Setter method for setting an associate's email address.
+	 * Setter method for setting an associate's email address
+	 * 
+	 * @param email an associate's email address
 	 */
 	@JsonProperty("email")
 	public void setEmail(String email) {
@@ -59,7 +63,9 @@ public class NewAssociate {
 	}
 
 	/**
-	 * Getter method for retrieving an associate's salesforce ID.
+	 * Getter method for retrieving an associate's salesforce ID
+	 * 
+	 * @return an associate's salesforce ID
 	 */
 	@JsonProperty("salesforceId")
 	public String getSalesforceId() {
@@ -67,7 +73,9 @@ public class NewAssociate {
 	}
 
 	/**
-	 * Setter method for setting an associate's salesforce ID.
+	 * Setter method for setting an associate's salesforce ID
+	 *
+	 * @param salesforceId an associate's salesforce ID
 	 */
 	@JsonProperty("salesforceId")
 	public void setSalesforceId(String salesforceId) {
@@ -75,7 +83,9 @@ public class NewAssociate {
 	}
 
 	/**
-	 * Getter method for retrieving an associate's first name.
+	 * Getter method for retrieving an associate's first name
+	 *
+	 * @return an associate's first name
 	 */
 	@JsonProperty("firstName")
 	public String getFirstName() {
@@ -83,7 +93,9 @@ public class NewAssociate {
 	}
 
 	/**
-	 * Setter method for setting an associate's first name.
+	 * Setter method for setting an associate's first name
+	 *
+	 * @param firstName an associate's first name
 	 */
 	@JsonProperty("firstName")
 	public void setFirstName(String firstName) {
@@ -91,7 +103,9 @@ public class NewAssociate {
 	}
 
 	/**
-	 * Getter method for retrieving an associate's last name.
+	 * Getter method for retrieving an associate's last name
+	 *
+	 * @return an associate's last name
 	 */
 	@JsonProperty("lastName")
 	public String getLastName() {
@@ -99,7 +113,9 @@ public class NewAssociate {
 	}
 
 	/**
-	 * Setter method for setting an associate's last name.
+	 * Setter method for setting an associate's last name
+	 *
+	 * @param lastName an associate's last name
 	 */
 	@JsonProperty("lastName")
 	public void setLastName(String lastName) {
@@ -107,7 +123,9 @@ public class NewAssociate {
 	}
 
 	/**
-	 * Getter method for retrieving an associate's flag attribute.
+	 * Getter method for retrieving an associate's flag attribute
+	 *
+	 * @return an associate's flag attribute
 	 */
 	@JsonProperty("flag")
 	public String getFlag() {
@@ -115,7 +133,9 @@ public class NewAssociate {
 	}
 
 	/**
-	 * Setter method for setting an associate's flag attribute.
+	 * Setter method for setting an associate's flag attribute
+	 *
+	 * @param flag an associate's flag attribute
 	 */
 	@JsonProperty("flag")
 	public void setFlag(String flag) {

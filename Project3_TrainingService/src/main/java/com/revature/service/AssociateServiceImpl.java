@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.revature.logger.AppLogger;
 import com.revature.model.Associate;
 import com.revature.repo.AssociateRepo;
 
@@ -78,12 +79,16 @@ public class AssociateServiceImpl implements AssociateService {
 	@Override
 	public void createAssociate(Associate associate) {
 		associateRepo.save(associate);
+		AppLogger.log.info("New associate record created");
+
 	}
 
 	@Override
 	public void updateAssociate(Associate associate) {
 		associateRepo.findById(associate.getAssociateId())
 				.ifPresent((existingAssociate) -> associateRepo.save(associate));
+		AppLogger.log.info("Existing associate record updated");
+
 	}
 
 	/**
@@ -111,6 +116,8 @@ public class AssociateServiceImpl implements AssociateService {
 	@Override
 	public void deleteAssociate(Associate associate) {
 		associateRepo.delete(associate);
+		AppLogger.log.info("Existing associate record deleted");
+
 	}
 
 }

@@ -3,6 +3,8 @@ package com.revature;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.revature.logger.AppLogger;
+
 /**
  * Training Service microservice main class.
  */
@@ -16,6 +18,7 @@ public class TrainingServiceApplication {
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(TrainingServiceApplication.class, args);
+		AppLogger.log.info("Traning Service Initiated");
 	}
 
 }

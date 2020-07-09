@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.revature.consumers.NewAssociateAssignment;
 import com.revature.consumers.NewBatch;
 import com.revature.consumers.NewEmployeeAssignment;
+import com.revature.logger.AppLogger;
 import com.revature.model.Associate;
 import com.revature.model.Batch;
 import com.revature.model.Employee;
@@ -104,14 +105,14 @@ public class MsgReceiver {
 		try {
 			batchStartDate = new SimpleDateFormat("yyyy-MM-dd").parse(newBatch.getStartDate());
 		} catch (ParseException e) {
-			e.printStackTrace();
+			AppLogger.log.error("receivedMessage "+e.getMessage());
 		}
 		batch.setStartDate(batchStartDate);
 		Date batchEndDate = new Date();
 		try {
 			batchEndDate = new SimpleDateFormat("yyyy-MM-dd").parse(newBatch.getEndDate());
 		} catch (ParseException e) {
-			e.printStackTrace();
+			AppLogger.log.error("receivedMessage "+e.getMessage());
 		}
 		batch.setEndDate(batchEndDate);
 		batch.setSkill(newBatch.getSkill());
@@ -150,14 +151,14 @@ public class MsgReceiver {
 			try {
 				associateStartDate = new SimpleDateFormat("yyyy-MM-dd").parse(newAssociateAssignment.getStartDate());
 			} catch (ParseException e) {
-				e.printStackTrace();
+				AppLogger.log.error("receivedMessage "+e.getMessage());
 			}
 			associate.setStartDate(associateStartDate);
 			Date associateEndDate = new Date();
 			try {
 				associateEndDate = new SimpleDateFormat("yyyy-MM-dd").parse(newAssociateAssignment.getEndDate());
 			} catch (ParseException e) {
-				e.printStackTrace();
+				AppLogger.log.error("receivedMessage "+e.getMessage());
 			}
 			associate.setEndDate(associateEndDate);
 			associate.setActive(newAssociateAssignment.isActive());

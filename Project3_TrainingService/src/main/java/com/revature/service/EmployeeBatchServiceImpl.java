@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.revature.logger.AppLogger;
 import com.revature.model.EmployeeBatch;
 import com.revature.model.EmployeeBatchId;
 import com.revature.repo.EmployeeBatchRepo;
@@ -38,12 +39,16 @@ public class EmployeeBatchServiceImpl implements EmployeeBatchService {
 	@Override
 	public void createEmployeeBatch(EmployeeBatch employeeBatch) {
 		employeeBatchRepo.save(employeeBatch);
+		AppLogger.log.info("New Employee batch record created");
+
 	}
 
 	@Override
 	public void updateEmployeeBatch(EmployeeBatch employeeBatch) {
 		employeeBatchRepo.findById(employeeBatch.getEmployeeBatchId())
 				.ifPresent((existingEmployeeBatch) -> employeeBatchRepo.save(employeeBatch));
+		AppLogger.log.info("Existing Employee batch record updated");
+
 	}
 
 	@Override
@@ -60,6 +65,8 @@ public class EmployeeBatchServiceImpl implements EmployeeBatchService {
 	@Override
 	public void deleteEmployeeBatch(EmployeeBatch employeeBatch) {
 		employeeBatchRepo.delete(employeeBatch);
+		AppLogger.log.info("Existing Employee batch record deleted");
+
 	}
 
 }

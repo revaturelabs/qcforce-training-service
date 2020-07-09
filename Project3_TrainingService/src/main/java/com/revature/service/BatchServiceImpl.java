@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.revature.logger.AppLogger;
 import com.revature.model.Batch;
 import com.revature.repo.BatchRepo;
 
@@ -145,11 +146,14 @@ public class BatchServiceImpl implements BatchService {
 	@Override
 	public void createBatch(Batch batch) {
 		batchRepo.save(batch);
+	AppLogger.log.info("New Batch record created");
 	}
 
 	@Override
 	public void updateBatch(Batch batch) {
 		batchRepo.findById(batch.getBatchId()).ifPresent((existingBatch) -> batchRepo.save(batch));
+		AppLogger.log.info("Batch record updated");
+
 	}
 
 	@Override
@@ -164,6 +168,8 @@ public class BatchServiceImpl implements BatchService {
 	@Override
 	public void deleteBatch(Batch batch) {
 		batchRepo.delete(batch);
+		AppLogger.log.info("Existing Batch record deleted");
+
 	}
 
 }

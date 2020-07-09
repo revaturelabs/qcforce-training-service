@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.revature.logger.AppLogger;
 import com.revature.model.Employee;
 import com.revature.repo.EmployeeRepo;
 
@@ -42,11 +43,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public void createEmployee(Employee employee) {
 		employeeRepo.save(employee);
+		AppLogger.log.info("New Employee record created");
+
 	}
 
 	@Override
 	public void updateEmployee(Employee employee) {
 		employeeRepo.findById(employee.getEmployeeId()).ifPresent((existingEmployee) -> employeeRepo.save(employee));
+		AppLogger.log.info("Existing Employee record updated");
+
 	}
 
 	@Override
@@ -62,6 +67,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public void deleteEmployee(Employee employee) {
 		employeeRepo.delete(employee);
+		AppLogger.log.info("Existing Employee record deleted");
+
 	}
 
 }
