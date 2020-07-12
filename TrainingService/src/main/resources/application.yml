@@ -3,6 +3,9 @@ server:
   port: ${custom_port:8086}
   
 spring:
+  application:
+    name: ${application_name:TrainingService}
+
   rabbitmq:
     host: ${rabbitmq_host}
     port: ${rabbitmq_port}
