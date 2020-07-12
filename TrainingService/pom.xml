@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.revature</groupId>
-	<artifactId>Project3_TrainingService</artifactId>
+	<artifactId>TrainingService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Project3_TrainingService</name>
-	<description>Demo project for Spring Boot</description>
+	<name>TrainingService</name>
+	<description>Training Service</description>
 	<packaging>jar</packaging>
 
 	<properties>
