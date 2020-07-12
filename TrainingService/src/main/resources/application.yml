@@ -8,6 +8,7 @@ spring:
     port: ${rabbitmq_port}
     username: ${rabbitmq_username}
     password: ${rabbitmq_password}
+    queue-listener: ${rabbitmq_queue:BatchData-Queue}
 
   datasource:
     driverClassName: ${datasource_driverClassName:org.postgresql.Driver}

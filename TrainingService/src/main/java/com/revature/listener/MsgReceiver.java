@@ -93,11 +93,10 @@ public class MsgReceiver {
 	 * {@link Associate}, {@link Batch}, {@link Employee}, and {@link EmployeeBatch}
 	 * instances, which are then persisted into the database.
 	 * 
-	 * @param newBatch
+	 * @param newBatch the object that is being received from the queue
 	 */
-	@RabbitListener(queues = "BatchData-Queue")
+	@RabbitListener(queues = "${spring.rabbitmq.queue-listener}")
 	public void recievedMessage(NewBatch newBatch) {
-		// System.out.println("Recieved Message: "+ newBatch.toString());
 		Batch batch = new Batch();
 		batch.setBatchId(newBatch.getBatchId());
 		batch.setBatchName(newBatch.getName());
