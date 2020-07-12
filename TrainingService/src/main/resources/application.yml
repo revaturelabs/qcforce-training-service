@@ -8,7 +8,7 @@ spring:
 
   rabbitmq:
     host: ${rabbitmq_host}
-    port: ${rabbitmq_port}
+    port: ${rabbitmq_port:5672}
     username: ${rabbitmq_username}
     password: ${rabbitmq_password}
     queue-listener: ${rabbitmq_queue:BatchData-Queue}
@@ -22,7 +22,7 @@ spring:
   jpa:
     properties:
       hibernate:
-        dialect: ${jap_properties_hibernate_dialect:org.hibernate.dialect.PostgreSQLDialect}e
+        dialect: ${jap_properties_hibernate_dialect:org.hibernate.dialect.PostgreSQLDialect}
      
 eureka:
   client:
