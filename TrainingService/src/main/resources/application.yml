@@ -1,28 +1,33 @@
 
 server:
-  port: 8086
+  port: ${custom_port:8086}
   
 spring:
   rabbitmq:
-    port: 5672
-    host: ec2-3-128-80-159.us-east-2.compute.amazonaws.com
-    username: guest2 
-    password: "PvVf2pk&X9Xm%3"
+    host: ${rabbitmq_host}
+    port: ${rabbitmq_port}
+    username: ${rabbitmq_username}
+    password: ${rabbitmq_password}
 
   datasource:
-    driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://${REVATURE_POSTGRES_URL}:5432/${REVATURE_POSTGRES_DB}?
-    username: ${REVATURE_POSTGRES_USERNAME}
-    password: ${REVATURE_POSTGRES_PASSWORD}
+    driverClassName: ${datasource_driverClassName:org.postgresql.Driver}
+    url: ${datasource_url}
+    username: ${datasource_username}
+    password: ${datasource_password}
     
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        show-sql: true
-        format-sql: true
+        dialect: ${jap_properties_hibernate_dialect:org.hibernate.dialect.PostgreSQLDialect}e
      
 eureka:
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    registerWithEureka: true
+    fetchRegistry: true
+    service-url:
+      defaultZone: ${eureka_url:http://localhost:8761/eureka/}
+
+  instance:
+    hostname: ${HOSTNAME:${spring.application.name}}
+    preferIpAddress: false
+    instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}:${server.port}
